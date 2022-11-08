@@ -1,0 +1,32 @@
+{
+  "name": "messenger",
+  "version": "0.0.0",
+  "description": "messenger",
+  "scripts": {
+    "start": "parcel build ./index.html && node ./server.js",
+    "watch": "parcel ./index.html",
+    "build": "parcel build ./index.html  --no-cache",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uliasavi/Messenger.git"
+  },
+  "author": "Yuliya Savitskaya",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/uliasavi/Messenger/issues"
+  },
+  "homepage": "https://github.com/uliasavi/Messenger#readme",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "@parcel/transformer-sass": "^2.7.0",
+    "express": "^4.18.2",
+    "parcel": "^2.7.0",
+    "scss": "^0.2.4"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7"
+  }
+}

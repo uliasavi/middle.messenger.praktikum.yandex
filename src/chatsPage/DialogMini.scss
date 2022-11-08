@@ -1,0 +1,30 @@
+@import "../variable";
+.dialog-wrapper{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .avatar{
+    flex: 0 0 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: $base-color;
+  }
+  .name{
+    font-size: 20px;
+    font-family: "Caveat";
+    line-height: 30px;
+    color: $base-color;
+  }
+  .unread-message{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: $second-blue;
+    color: $base-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

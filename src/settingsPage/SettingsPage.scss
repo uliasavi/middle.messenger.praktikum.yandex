@@ -1,0 +1,71 @@
+@import "../variable";
+.settings-wrapper{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .settings{
+    width: 600px;
+    border-radius:14px;
+    background-color: $base-white;
+    box-sizing: border-box;
+    outline: 25px solid $base-color-10;
+    padding: 30px 60px;
+    .yours-picture{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .avatar{
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        background-image: url("./assets/avatar.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      .name{
+        margin: 10px 0 20px;
+      }
+    }
+    .settings-data{
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      .wrapper-input{
+        font-size: 20px;
+        line-height: 24px;
+        margin-bottom: 20px;
+        input{
+          font-size: 20px;
+          line-height: 24px;
+          &:focus{
+            outline: 1px solid $base-color-10;
+            border-radius: 2rem;
+          }
+        }
+      }
+    }
+    .settings-password{
+      display: none;
+    }
+    .settings-link{
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      a{
+        margin: 5px;
+      }
+      .red{
+        color: darkred;
+      }
+    }
+    .accept-settings{
+      display: none;
+      margin: 20px;
+    }
+  }
+}
