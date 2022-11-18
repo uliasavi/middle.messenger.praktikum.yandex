@@ -1,0 +1,49 @@
+<div class="settings-wrapper background">
+    <div class="settings">
+        <div class="yours-picture">
+            <div class="avatar">
+            </div>
+            <h2 class="name">Иван</h2>
+        </div>
+        <div class="settings-data">
+            <div class="wrapper-input">
+                <label for="settings-login">Логин</label>
+                <input type="text" name="login" id="settings-login" value="ivan" disabled>
+            </div>
+            <div class="wrapper-input">
+                <label for="settings-name">Имя</label>
+                <input type="text" name="first_name" id="settings-name" value="Иван" disabled>
+            </div>
+            <div class="wrapper-input">
+                <label for="settings-surname">Фамилия</label>
+                <input type="text" name="second_name" id="settings-surname" value="Иванов" disabled>
+            </div>
+            <div class="wrapper-input">
+                <label for="settings-display_name">Имя в чате</label>
+                <input type="text" name="display_name" id="settings-display_name" value="Ванек" disabled>
+            </div>
+            <div class="wrapper-input">
+                <label for="settings-phone">Телефон</label>
+                <input type="phone" name="phone" id="settings-phone" value="899773444436" disabled>
+            </div>
+        </div>
+        <div class="settings-password">
+            <div class="wrapper-input">
+                <label for="settings-password">Введите текущий пароль</label>
+                <input type="password" name="oldPassword" id="settings-password">
+            </div>
+            <div class="wrapper-input">
+                <label for="settings-password-new">Введите новый пароль</label>
+                <input type="password" name="newPassword" id="settings-password-new">
+            </div>
+        </div>
+        <div class="settings-link">
+            <a class="navLink" onclick="showEditSettings()">Изменить данные</a>
+            <a class="navLink"onclick="showEditPassword()">Изменить пароль</a>
+            <a class="navLink red"  onclick="renderPage('login')">Выйти</a>
+        </div>
+        <div class="accept-settings" id="saveSettingsBtn" >
+            <buttom class="submitBtn" onclick="saveSettings()"><span>Сохранить</span></buttom>
+        </div>
+    </div>
+</div>

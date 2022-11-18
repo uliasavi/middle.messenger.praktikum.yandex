@@ -1,0 +1,147 @@
+@import "./loginPage/LoginPage.scss";
+@import "./errorPage/error.scss";
+@import "./settingsPage/SettingsPage.scss";
+@import "./chatsPage/ChatsPage.scss";
+@import "./variable";
+#app{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.background{
+  background-image: url("./assets/background.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+html, body{
+  width: 100vw;
+  max-width: 100vw;
+  overflow: hidden;
+  height: 100%;
+  min-height: 100vh;
+}
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  outline: none;
+}
+a{
+  cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+  }
+  &:focus{
+    outline: 1px solid $base-color-10;
+    border-radius: 2rem;
+  }
+}
+button{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.submitBtn{
+  min-width: fit-content;
+  background-color: $base-color;
+  border-radius: 68px;
+  border: none;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 18px 0;
+  cursor:pointer;
+  span{
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 0.175em;
+    color: $base-white;
+    margin: 0 auto;
+  }
+  &:focus,&:hover{
+    background-color: $base-color-90;
+  }
+}
+.navLink{
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.175em;
+  color: $base-color;
+  &.white{
+    color: $base-white;
+    font-size: 20px;
+    line-height: 32px;
+    &:focus{
+      outline: 1px solid $base-white;
+      border-radius: 2rem;
+    }
+  }
+
+}
+.wrapper-input{
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.175em;
+  color: $base-color;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 40px;
+  input{
+    border: none;
+    border-bottom:1px solid $base-color;
+    width: 100%;
+    outline: none;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    padding: 0 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    background-color: $base-white;
+    &:focus{
+      outline: 1px solid $base-color-10;
+      border-radius: 2rem;
+    }
+  }
+&_small{
+  margin-bottom: 21px;
+  label{
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+}
+
+h2{
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 60px;
+  letter-spacing: 0.175em;
+  color: $base-color;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  margin: 48px 0 42px;
+  &.small-margin{
+    margin: 26px 0 16px;
+  }
+}
+
