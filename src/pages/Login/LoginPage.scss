@@ -1,0 +1,43 @@
+@import "../../variable.scss";
+.wrapper-login{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-form-wrapper{
+  border-radius:25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  form{
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 100px;
+    border-radius:14px;
+    background-color: $base-white;
+    box-sizing: border-box;
+    outline: 25px solid $base-color-10;
+    .submit-btn-wrapper{
+      width: 100%;
+      margin: 25px 0 28px;
+    }
+    input{
+      background-color: $base-white;
+    }
+  }
+  &_long{
+    height: fit-content;
+    form{
+      height: fit-content;
+    }
+    .navLink{
+      display: block;
+      margin-bottom: 36px;
+    }
+  }
+}
