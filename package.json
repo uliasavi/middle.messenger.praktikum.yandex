@@ -19,22 +19,22 @@
   },
   "homepage": "https://github.com/uliasavi/Messenger#readme",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "^1.0.9",
-    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
-    "@parcel/transformer-sass": "^2.7.0",
-    "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.45.0",
-    "eslint": "^8.28.0",
-    "express": "^4.18.2",
-    "nanoid": "^4.0.0",
-    "parcel": "^2.7.0",
-    "scss": "^0.2.4",
-    "stylelint": "^14.15.0",
-    "stylelint-config-standard": "^29.0.0",
-    "stylelint-config-standard-scss": "^6.1.0",
-    "typescript": "^4.9.3"
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
+    "@parcel/transformer-sass": "2.7.0",
+    "@typescript-eslint/eslint-plugin": "5.45.0",
+    "@typescript-eslint/parser": "5.45.0",
+    "eslint": "8.28.0",
+    "express": "4.18.2",
+    "nanoid": "4.0.0",
+    "parcel": "2.7.0",
+    "scss": "0.2.4",
+    "stylelint": "14.15.0",
+    "stylelint-config-standard": "29.0.0",
+    "stylelint-config-standard-scss": "6.1.0",
+    "typescript": "4.9.3"
   },
   "dependencies": {
-    "handlebars": "^4.7.7"
+    "handlebars": "4.7.7"
   }
 }

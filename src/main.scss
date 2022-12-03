@@ -55,21 +55,24 @@ button {
   display: flex;
   width: 100%;
   align-items: center;
+  justify-content: center;
   padding: 18px 0;
   cursor: pointer;
-  span {
-    font-family: "JetBrains Mono";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 32px;
-    letter-spacing: 0.175em;
-    color: $base-white;
-    margin: 0 auto;
-  }
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.175em;
+  color: $base-white;
+  margin: 0 auto;
   &:focus,
   &:hover {
     background-color: $base-color-90;
+  }
+  &:disabled {
+    cursor: initial;
+    opacity: 0.6;
   }
 }
 .navLink {
@@ -94,15 +97,19 @@ button {
   font-family: "JetBrains Mono";
   font-style: normal;
   font-weight: 300;
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 20px;
+  line-height: 24px;
   letter-spacing: 0.175em;
   color: $base-color;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
+  position: relative;
+  .input-block {
+    width: 100%;
+  }
   input {
     border: none;
     border-bottom: 1px solid $base-color;
@@ -120,13 +127,12 @@ button {
       border-radius: 2rem;
     }
   }
-  &_small {
-    margin-bottom: 21px;
-    label {
-      font-weight: 200;
-      font-size: 20px;
-      line-height: 26px;
-    }
+  .validation-message {
+    position: absolute;
+    bottom: -21px;
+    color: rgb(206, 114, 114);
+    font-size: 10px;
+    line-height: 1em;
   }
 }
 

@@ -1,5 +1,5 @@
 @import "../../variable.scss";
-@import "../../components/chatsComponents/DialogMini/DialogMini.scss";
+@import "../../components/chatsComponents/DialogList/DialogList.scss";
 @import "../../components/chatsComponents/InputFile/InputFile.scss";
 @import "../../components/chatsComponents/Message/Message.scss";
 
@@ -50,16 +50,6 @@
           color: $base-color;
           padding: 0 5px;
         }
-      }
-    }
-    .dialog-list {
-      flex: 0 0 89%;
-      @include bgc;
-      padding: 8px;
-      .dialog {
-        height: 70px;
-        background-color: $base-white;
-        border-radius: 10px;
       }
     }
   }

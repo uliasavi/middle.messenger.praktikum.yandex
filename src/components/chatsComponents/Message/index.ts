@@ -1,9 +1,11 @@
 import Block from "../../../utils/Block";
 import template from "./Message.hbs";
-
+interface MessageProps {
+  text: string;
+}
 export class Message extends Block {
-  constructor() {
-    super("div");
+  constructor(props: MessageProps) {
+    super({ ...props });
   }
 
   render() {

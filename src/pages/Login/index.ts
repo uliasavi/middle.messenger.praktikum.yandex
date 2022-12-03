@@ -1,9 +1,7 @@
 import Block from "../../utils/Block";
 import template from "./LoginPage.hbs";
-import { MainButton } from "../../components/general/MainButton/MainButton";
-import { Label } from "../../components/general/Label/Label";
-import { Link } from "../../components/general/Link/Link";
-
+import { Link } from "../../components/general/Link";
+import { LoginForm } from "../../components/Login/LoginForm";
 export class LoginPage extends Block {
   constructor() {
     super({});
@@ -11,24 +9,10 @@ export class LoginPage extends Block {
   init() {
     this.props.labelLogin = "Логин";
     this.props.labelPassword = "Пароль";
-    this.children.mainButton = new MainButton({
-      label: "Авторизоваться",
-      type: "submit",
+    this.children.loginForm = new LoginForm({
       events: {
-        click: () => this.onSubmit(),
+        submit: (e) => this.onSubmit(e),
       },
-    });
-    this.children.login = new Label({
-      label: "Логин",
-      type: "text",
-      id: "login",
-      name: "login",
-    });
-    this.children.password = new Label({
-      label: "Пароль",
-      type: "password",
-      id: "password",
-      name: "password",
     });
     this.children.link = new Link({
       label: "Нет аккаунта?",
@@ -40,11 +24,12 @@ export class LoginPage extends Block {
   }
   onClick() {
     renderPage("registration");
-    console.log("click");
   }
-  onSubmit() {
+  onSubmit(e) {
+    e.preventDefault();
+    const formData = Object.fromEntries(new FormData(e.target).entries());
+    console.log(formData);
     renderPage("chats");
-    console.log("авторизоваться");
   }
   render() {
     return this.compile(template, { ...this.props });

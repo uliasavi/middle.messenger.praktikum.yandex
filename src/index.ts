@@ -6,7 +6,7 @@ import { SettingsPage } from "./pages/Settings";
 import "./main.scss";
 
 const root = document.querySelector("#app");
-const startPage = new SettingsPage();
+const startPage = new LoginPage();
 
 window.addEventListener("DOMContentLoaded", () => {
   root?.append(startPage.getContent()!);

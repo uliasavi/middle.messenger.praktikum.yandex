@@ -5,11 +5,11 @@ interface InputProps {
   type: string;
   id: string;
   name: string;
-  value?:string;
-  disabled?:string;
+  value?: string;
+  disabled?: string;
   events: {
-    focus: () => void;
-    blur: () => void;
+    focus: (e) => void;
+    blur: (e) => void;
   };
 }
 

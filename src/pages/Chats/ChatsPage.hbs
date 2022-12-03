@@ -8,9 +8,7 @@
                 <input type="text" placeholder="Поиск"></input>
             </div>
         </div>
-        <div class="dialog-list">
-            <div class="dialog">{{{dialog}}}</div>
-        </div>
+        {{{dialogList}}}
     </div>
     <div class="full-chat">
         <div class="companion-info">
@@ -21,10 +19,6 @@
             <button class="chat-settings"></button>
         </div>
         <div class="messages-wrapper">{{{message}}}</div>
-        <div class="typing-place">
-            <div class="input-file-wrapper">{{{inputFile}}}</div>
-            <input class="typing-input-text" type="text" name="message">
-            <button class="send">→</button>
-        </div>
+        {{{typingPlace}}}
     </div>
 </div>
