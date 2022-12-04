@@ -22,6 +22,7 @@
     "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
     "@parcel/transformer-css": "2.8.0",
+    "@parcel/transformer-sass": "2.8.0",
     "@typescript-eslint/eslint-plugin": "5.45.0",
     "@typescript-eslint/parser": "5.45.0",
     "eslint": "8.28.0",
@@ -34,7 +35,6 @@
     "typescript": "4.9.3"
   },
   "dependencies": {
-    "@parcel/transformer-sass": "^2.8.0",
     "handlebars": "4.7.7"
   }
 }
