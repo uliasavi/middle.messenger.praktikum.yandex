@@ -1,6 +1,5 @@
 import Block from "../../utils/Block";
 import template from "./SettingsPage.hbs";
-import { Label } from "../../components/general/Label";
 import { Link } from "../../components/general/Link";
 import { ChangePasswordForm } from "../../components/Settings/ChangePassword/index";
 import { ChangeUserDataForm } from "../../components/Settings/ChangeUserData/index";
@@ -29,21 +28,21 @@ export class SettingsPage extends Block {
     });
     this.children.linkChangeData = new Link({
       label: "Изменить данные",
-      class: "navLink",
+      class: "nav-link",
       events: {
         click: () => this.onShowEditSettings(),
       },
     });
     this.children.linkChangePassword = new Link({
       label: "Изменить пароль",
-      class: "navLink",
+      class: "nav-link",
       events: {
         click: () => this.onShowEditPassword(),
       },
     });
     this.children.linkExit = new Link({
       label: "Выйти",
-      class: "navLink red",
+      class: "nav-link red",
       events: {
         click: () => this.onClickExit(),
       },
@@ -55,13 +54,13 @@ export class SettingsPage extends Block {
     this.setProps({ hideDataChange: true });
     this.setProps({ hideLink: false });
   }
-  changePassword(e: { preventDefault: () => void; target: HTMLFormElement | undefined }) {
+  changePassword(e: { preventDefault: () => void; target: HTMLFormElement | undefined }):void {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target).entries());
     console.log(formData);
     this.showMainSettings();
   }
-  changeUserData(e: { preventDefault: () => void; target: HTMLFormElement | undefined }) {
+  changeUserData(e: { preventDefault: () => void; target: HTMLFormElement | undefined }):void {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target).entries());
     console.log(formData);

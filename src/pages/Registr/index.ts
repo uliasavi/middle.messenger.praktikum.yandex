@@ -5,26 +5,26 @@ import { Link } from "../../components/general/Link";
 
 export class RegistrationPage extends Block {
   constructor() {
-    super("div");
+    super({});
   }
   init() {
     this.children.registrationForm = new RegistrationForm({
       events: {
-        submit: (e) => this.onSubmit(e),
+        submit: (e: { preventDefault: () => void; target: HTMLFormElement | undefined }): void => this.onSubmit(e),
       },
     });
     this.children.link = new Link({
       label: "Войти",
-      class: "navLink",
+      class: "nav-link",
       events: {
-        click: () => this.onClick(),
+        click: ():void => this.onClick(),
       },
     });
   }
   onClick() {
     renderPage("login");
   }
-  onSubmit(e: { preventDefault: () => void; target: HTMLFormElement | undefined; }) {
+  onSubmit(e: { preventDefault: () => void; target: HTMLFormElement | undefined; }):void {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target).entries());
     console.log(formData);

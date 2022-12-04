@@ -5,11 +5,11 @@ import { Label } from "../../general/Label";
 interface ChangePasswordProps {
   disabled: boolean;
   events: {
-    submit: (e) => void;
+    submit: (e: { preventDefault: () => void; target: HTMLFormElement | undefined }) => void;
   };
 }
 
-export class ChangeUserDataForm extends Block {
+export class ChangeUserDataForm extends Block<ChangePasswordProps> {
   constructor(props: ChangePasswordProps) {
     super({ ...props });
   }
@@ -39,7 +39,7 @@ export class ChangeUserDataForm extends Block {
       disabled: this.props.disabled,
     });
     this.children.displayName = new Label({
-      label: "Имя",
+      label: "Имя в чате",
       type: "text",
       id: "settings-display_name",
       name: "display_name",
@@ -56,7 +56,7 @@ export class ChangeUserDataForm extends Block {
     });
   }
   protected componentDidUpdate(oldProps: any, newProps: any): boolean {
-    for (let key in this.children) {
+    for (const key in this.children) {
       const child = this.children[key];
       if (child instanceof Label) {
         child.setProps({ disabled: newProps.disabled });

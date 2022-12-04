@@ -6,7 +6,7 @@ interface ValidationProps {
   isUnvalid: boolean;
 }
 
-export class Validation extends Block {
+export class Validation extends Block<ValidationProps> {
   constructor(props: ValidationProps) {
     super({ ...props });
   }

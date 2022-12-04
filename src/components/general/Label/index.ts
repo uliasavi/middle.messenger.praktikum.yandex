@@ -12,13 +12,21 @@ import {
   oldPasswordValidation,
   newPasswordValidation,
   displayNameValidation,
+  phoneValidation,
 } from "./ValidationBus";
 
 interface LabelProps {
   label: string;
+  type: string;
+  id: string;
+  name: string;
+  value?: string;
+  disabled?: string;
 }
-
-export class Label extends Block {
+interface Context {
+  children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } }
+}
+export class Label extends Block<LabelProps> {
   constructor(props: LabelProps) {
     super({ ...props });
   }
@@ -30,8 +38,8 @@ export class Label extends Block {
       value: this.props.value,
       disabled: this.props.disabled,
       events: {
-        focus: (e) => this.onfocus(e),
-        blur: (e) => this.onblur(e),
+        focus: (e: { target: { value: string } }) => this.onfocus(e),
+        blur: (e: { target: { value: string } }) => this.onblur(e),
       },
     });
     this.children.validation = new Validation({
@@ -39,38 +47,41 @@ export class Label extends Block {
       isUnvalid: false,
     });
   }
-  onfocus(e) {
+  onfocus(e: { target: { value: string } }) {
     console.log("focus");
   }
-  onblur(e: { target: { value: any } }) {
+  onblur(e: { target: { value: string } }) {
     const typeOfInput = this.children.input.props.name;
     switch (typeOfInput) {
       case "login":
-        loginValidation(e.target.value, this);
+        loginValidation(e.target.value, this as unknown as Context);
         break;
       case "password":
-        passwordValidation(e.target.value, this);
+        passwordValidation(e.target.value, this as unknown as Context);
         break;
       case "email":
-        emailValidation(e.target.value, this);
+        emailValidation(e.target.value, this as unknown as Context);
         break;
       case "first_name":
-        nameValidation(e.target.value, this);
+        nameValidation(e.target.value, this as unknown as Context);
         break;
       case "second_name":
-        secondnameValidation(e.target.value, this);
+        secondnameValidation(e.target.value, this as unknown as Context);
         break;
       case "password_repeat":
-        repeatPasswordValidation(e.target.value, this);
+        repeatPasswordValidation(e.target.value, this as unknown as Context);
         break;
       case "display_name":
-        displayNameValidation(e.target.value, this);
+        displayNameValidation(e.target.value, this as unknown as Context);
         break;
       case "oldPassword":
-        oldPasswordValidation(e.target.value, this);
+        oldPasswordValidation(e.target.value, this as unknown as Context);
         break;
       case "newPassword":
-        newPasswordValidation(e.target.value, this);
+        newPasswordValidation(e.target.value, this as unknown as Context);
+        break;
+      case "phone":
+        phoneValidation(e.target.value, this as unknown as Context);
         break;
     }
   }

@@ -8,12 +8,12 @@ interface InputProps {
   value?: string;
   disabled?: string;
   events: {
-    focus: (e) => void;
-    blur: (e) => void;
+    focus: (e: { target: { value: string } }) => void;
+    blur: (e: { target: { value: string } }) => void;
   };
 }
 
-export class Input extends Block {
+export class Input extends Block<InputProps> {
   constructor(props: InputProps) {
     super({ ...props });
   }

@@ -3,7 +3,7 @@ import template from "./InputFile.hbs";
 
 export class InputFile extends Block {
   constructor() {
-    super("div");
+    super({});
   }
 
   render() {

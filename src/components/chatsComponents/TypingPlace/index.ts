@@ -4,10 +4,10 @@ import { InputFile } from "../InputFile/index";
 
 interface TypingPlaceProps {
   events: {
-    submit: (e) => void;
+    submit: (e: { preventDefault: () => void; target: HTMLFormElement | undefined }) => void;
   };
 }
-export class TypingPlace extends Block {
+export class TypingPlace extends Block<TypingPlaceProps> {
   constructor(props: TypingPlaceProps) {
     super({ ...props });
   }

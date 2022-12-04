@@ -3,7 +3,7 @@ import template from "./400error.hbs";
 
 export class ErrorPage extends Block {
   constructor() {
-    super("div");
+    super({});
   }
 
   render() {

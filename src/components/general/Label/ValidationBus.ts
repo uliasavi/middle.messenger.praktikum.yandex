@@ -3,6 +3,7 @@ const validationObserver = {
   password: true,
   email: true,
   name: true,
+  phone: true,
   displayName: true,
   secondname: true,
   repeatPassword: true,
@@ -10,7 +11,7 @@ const validationObserver = {
   newPassword: true,
 };
 function isDisabledSubmit() {
-  const submitBtn = document.getElementById("submitBtn") as Element;
+  const submitBtn = document.getElementById("submit-btn") as Element;
   for (const key in validationObserver) {
     if (Object.prototype.hasOwnProperty.call(validationObserver, key)) {
       const element: boolean = validationObserver[key];
@@ -51,7 +52,7 @@ export function passwordValidation(
   value: string,
   context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
 ) {
-  if (value.length < 9) {
+  if (value.length < 8) {
     validationObserver.password = false;
     isDisabledSubmit();
     context.children.validation.setProps({
@@ -68,7 +69,7 @@ export function oldPasswordValidation(
   value: string,
   context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
 ) {
-  if (value.length < 9) {
+  if (value.length < 8) {
     validationObserver.oldPassword = false;
     isDisabledSubmit();
     context.children.validation.setProps({
@@ -85,7 +86,7 @@ export function newPasswordValidation(
   value: string,
   context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
 ) {
-  if (value.length < 9) {
+  if (value.length < 8) {
     validationObserver.newPassword = false;
     isDisabledSubmit();
     context.children.validation.setProps({
@@ -117,6 +118,25 @@ export function emailValidation(
     hideErrorMessage(context);
   }
 }
+export function phoneValidation(
+  value: string,
+  context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
+) {
+  const regularExp = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+  const isCorrectPhone = regularExp.test(value);
+  if (!isCorrectPhone) {
+    validationObserver.phone = false;
+    isDisabledSubmit();
+    context.children.validation.setProps({
+      isUnvalid: true,
+      message: "Телфон должен соответствовать формату 8/+7 xxx xxx xxxx",
+    });
+  } else {
+    validationObserver.phone = true;
+    isDisabledSubmit();
+    hideErrorMessage(context);
+  }
+}
 export function nameValidation(
   value: string,
   context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
@@ -135,22 +155,22 @@ export function nameValidation(
   }
 }
 export function displayNameValidation(
-    value: string,
-    context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
-  ) {
-    if (value.length < 2) {
-      validationObserver.displayName = false;
-      isDisabledSubmit();
-      context.children.validation.setProps({
-        isUnvalid: true,
-        message: "Имя должно содержать больше одного символа",
-      });
-    } else {
-      validationObserver.displayName = true;
-      isDisabledSubmit();
-      hideErrorMessage(context);
-    }
+  value: string,
+  context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
+) {
+  if (value.length < 2) {
+    validationObserver.displayName = false;
+    isDisabledSubmit();
+    context.children.validation.setProps({
+      isUnvalid: true,
+      message: "Имя должно содержать больше одного символа",
+    });
+  } else {
+    validationObserver.displayName = true;
+    isDisabledSubmit();
+    hideErrorMessage(context);
   }
+}
 export function secondnameValidation(
   value: string,
   context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }

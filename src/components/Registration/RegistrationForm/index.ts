@@ -4,11 +4,11 @@ import { Label } from "../../general/Label";
 
 interface ChangePasswordProps {
   events: {
-    submit: (e) => void;
+    submit: (e: { preventDefault: () => void; target: HTMLFormElement | undefined }) => void;
   };
 }
 
-export class RegistrationForm extends Block {
+export class RegistrationForm extends Block<ChangePasswordProps> {
   constructor(props: ChangePasswordProps) {
     super({ ...props });
   }

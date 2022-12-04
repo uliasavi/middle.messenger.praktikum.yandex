@@ -1,8 +1,10 @@
-@import "../../variable.scss";
+@import "../../variable";
+
 .error {
   width: 100%;
   height: 100%;
 }
+
 .error-wrapper {
   position: absolute;
   top: 20%;
@@ -12,12 +14,14 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
   .error-code {
     margin: 10px;
     font-size: 66px;
   }
+
   .error-message {
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;

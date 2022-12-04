@@ -3,9 +3,10 @@ import template from "./ChatsPage.hbs";
 import { Message } from "../../components/chatsComponents/Message/index";
 import { DialogList } from "../../components/chatsComponents/DialogList";
 import { TypingPlace } from "../../components/chatsComponents/TypingPlace";
+
 export class ChatsPage extends Block {
   constructor() {
-    super("div");
+    super({});
   }
 
   init() {
@@ -40,18 +41,22 @@ export class ChatsPage extends Block {
     });
     this.children.typingPlace = new TypingPlace({
       events: {
-        submit: (e) => this.sendMessage(e),
+        submit: (e: { preventDefault: () => void; target: HTMLFormElement | undefined }): void => {
+          return this.sendMessage(e);
+        },
       },
     });
   }
-  sendMessage(e: { preventDefault: () => void; target: HTMLFormElement | undefined }) {
+  sendMessage(e: { preventDefault: () => void; target: HTMLFormElement | undefined }):void {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target).entries());
-    console.log(formData);
-    this.children.message.setProps({ text: formData.message });
-    e.target.reset();
+    if (formData.message || formData.file.size != 0) {
+      console.log(formData);
+      this.children.message.setProps({ text: formData.message });
+      e.target.reset();
+    }
   }
-  clickOnDialogMini(e: { target: { id: string } }) {
+  clickOnDialogMini(e: { target: { id: string } }):void {
     const currentDialogID = e.target.id;
     console.log(currentDialogID);
     const dialogList = this.children.dialogList.props.dialogs;

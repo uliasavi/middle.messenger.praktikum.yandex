@@ -10,10 +10,10 @@ interface DialogListProps {
   countOfDialogs: number;
   dialogs: [DialogMiniInterface];
   events: {
-    click: (e) => void;
+    click: (e: { preventDefault: () => void; target: HTMLFormElement | undefined }) => void;
   };
 }
-export class DialogList extends Block {
+export class DialogList extends Block<DialogListProps> {
   constructor(props: DialogListProps) {
     super({ ...props });
   }
