@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/uliasavi/Messenger#readme",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@anikin/parcel-transformer-handlebars": "^1.0.2",
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
     "@parcel/transformer-sass": "2.7.0",
     "@typescript-eslint/eslint-plugin": "5.45.0",
