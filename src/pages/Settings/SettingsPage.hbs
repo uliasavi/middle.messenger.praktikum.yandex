@@ -1,0 +1,19 @@
+<div class="settings-wrapper background">
+    <div class="settings">
+        <div class="yours-picture">
+            <div class="avatar">
+            </div>
+            <h2 class="name">Иван</h2>
+        </div>
+        {{#if hideDataChange}}{{{changeUserDataForm}}}{{/if}}
+        {{#if hidePasswordChange}}
+        {{{changePasswordForm}}}
+        {{/if}}
+
+        <div class="settings-link" {{#if hideLink}}style="display:none;" {{/if}}>
+            {{{linkChangeData}}}
+            {{{linkChangePassword}}}
+            {{{linkExit}}}
+        </div>
+    </div>
+</div>

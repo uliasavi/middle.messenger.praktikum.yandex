@@ -1,0 +1,163 @@
+@import "../../variable";
+@import "../../components/chatsComponents/DialogList/DialogList";
+@import "../../components/chatsComponents/InputFile/InputFile";
+@import "../../components/chatsComponents/Message/Message";
+
+@mixin bgc {
+  background-color: $second-blue;
+  border-radius: 10px;
+}
+
+@mixin display-flex {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  flex-direction: column;
+}
+
+.chats-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+
+  div {
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  .chats-list {
+    flex: 0 0 25%;
+
+    @include display-flex;
+
+    justify-content: space-between;
+
+    .users-block {
+      flex: 0 0 10%;
+
+      @include display-flex;
+      @include bgc;
+
+      .profile-link {
+        flex: 0 0 15%;
+      }
+
+      .search-place {
+        flex: 0 0 60%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+
+        input {
+          border: 1px solid $base-white;
+          border-radius: 10px;
+          width: 100%;
+          font-size: 20px;
+          line-height: 30px;
+          height: 30px;
+          background-color: $base-white;
+          color: $base-color;
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+
+  .full-chat {
+    flex: 0 0 75%;
+
+    @include display-flex;
+
+    .companion-info {
+      flex: 0 0 5%;
+
+      @include bgc;
+
+      display: flex;
+      align-items: center;
+      padding-right: 20px;
+
+      .friend {
+        flex: 0 1 100%;
+        display: flex;
+        align-items: stretch;
+
+        .friend-avatar {
+          width: 55px;
+          height: 55px;
+          border-radius: 100%;
+          background-color: $base-white;
+        }
+
+        .friend-name {
+          font-family: Caveat, sans-serif;
+          font-weight: 700;
+          font-size: 36px;
+          line-height: 32px;
+          color: $base-white;
+        }
+      }
+
+      .chat-settings {
+        width: 35px;
+        height: 35px;
+        border-radius: 100%;
+        background-image: url("./assets/settings.svg");
+        background-position: center;
+        background-size: cover;
+
+        &:hover,
+        &:focus {
+          filter: contrast(200%);
+        }
+      }
+    }
+
+    .messages-wrapper {
+      flex: 0 0 85%;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-end;
+    }
+
+    .typing-place {
+      flex: 0 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .typing-input-text {
+        padding: 0 10px;
+        flex: 0 1 100%;
+        background-color: $base-white;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        font-size: 22px;
+        line-height: 32px;
+      }
+
+      .send {
+        display: block;
+        width: 35px;
+        height: 35px;
+        border-radius: 100%;
+        background-color: $base-white;
+        cursor: pointer;
+        text-align: center;
+        font-size: 22px;
+        line-height: 30px;
+        margin-left: 10px;
+        box-sizing: border-box;
+
+        &:hover,
+        &:focus {
+          color: $base-color-90;
+        }
+      }
+    }
+  }
+}

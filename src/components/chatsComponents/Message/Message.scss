@@ -1,0 +1,23 @@
+@import "../../../variable";
+
+.message {
+  width: 100%;
+  height: fit-content;
+  min-height: 30px;
+  margin: 5px;
+  display: flex;
+  justify-content: flex-start;
+
+  span {
+    background-color: $base-white;
+    border-radius: 20px;
+    font-size: 22px;
+    display: block;
+    width: fit-content;
+    padding: 5px 15px;
+  }
+
+  &.my {
+    justify-content: flex-end;
+  }
+}
