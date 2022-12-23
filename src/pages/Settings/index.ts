@@ -1,12 +1,27 @@
 import Block from "../../utils/Block";
 import template from "./SettingsPage.hbs";
-import { Link } from "../../components/general/Link";
 import { ChangePasswordForm } from "../../components/Settings/ChangePassword/index";
 import { ChangeUserDataForm } from "../../components/Settings/ChangeUserData/index";
+import { Button } from "../../components/general/Button";
+import UserController from "../../controllers/UserController";
+import AuthController from "../../controllers/AuthController";
+import store, { withStore } from "../../utils/Store";
+import { merge } from "../../utils/helpers";
 
-export class SettingsPage extends Block {
-  constructor() {
+interface SettingsPageProps {
+  display_name: string;
+  avatar: string;
+  disabled: boolean;
+  hidePasswordChange: boolean;
+  hideDataChange: boolean;
+  hideLink: boolean;
+  hideAcceptDataBtn: boolean;
+}
+
+class SettingsPageBase extends Block<SettingsPageProps> {
+  constructor(props: SettingsPageProps) {
     super({
+      ...props,
       disabled: true,
       hidePasswordChange: false,
       hideDataChange: true,
@@ -14,7 +29,7 @@ export class SettingsPage extends Block {
       hideAcceptDataBtn: true,
     });
   }
-  init(): void {
+  init() {
     this.children.changePasswordForm = new ChangePasswordForm({
       events: {
         submit: (e) => this.changePassword(e),
@@ -23,30 +38,36 @@ export class SettingsPage extends Block {
     this.children.changeUserDataForm = new ChangeUserDataForm({
       disabled: this.props.disabled,
       events: {
-        submit: (e) => this.changeUserData(e),
+        submit: (e: {
+          preventDefault: () => void;
+          target: HTMLFormElement | undefined;
+        }) => this.changeUserData(e),
       },
     });
-    this.children.linkChangeData = new Link({
+    this.children.linkChangeData = new Button({
       label: "Изменить данные",
       class: "nav-link",
       events: {
         click: () => this.onShowEditSettings(),
       },
     });
-    this.children.linkChangePassword = new Link({
+    this.children.linkChangePassword = new Button({
       label: "Изменить пароль",
       class: "nav-link",
       events: {
         click: () => this.onShowEditPassword(),
       },
     });
-    this.children.linkExit = new Link({
+    this.children.linkExit = new Button({
       label: "Выйти",
       class: "nav-link red",
       events: {
-        click: () => this.onClickExit(),
+        click: () => this.logOut(),
       },
     });
+  }
+  logOut() {
+    AuthController.logout();
   }
   showMainSettings() {
     this.setProps({ disabled: true });
@@ -54,21 +75,25 @@ export class SettingsPage extends Block {
     this.setProps({ hideDataChange: true });
     this.setProps({ hideLink: false });
   }
-  changePassword(e: { preventDefault: () => void; target: HTMLFormElement | undefined }):void {
+  changePassword(e: {
+    preventDefault: () => void;
+    target: HTMLFormElement | undefined;
+  }): void {
     e.preventDefault();
-    const formData = Object.fromEntries(new FormData(e.target).entries());
-    console.log(formData);
+    const formData: any = Object.fromEntries(new FormData(e.target).entries());
+    UserController.changePassword(formData);
     this.showMainSettings();
   }
-  changeUserData(e: { preventDefault: () => void; target: HTMLFormElement | undefined }):void {
+  changeUserData(e: {
+    preventDefault: () => void;
+    target: HTMLFormElement | undefined;
+  }): void {
     e.preventDefault();
-    const formData = Object.fromEntries(new FormData(e.target).entries());
-    console.log(formData);
+    const formData: any = Object.fromEntries(new FormData(e.target).entries());
+    const email = store.getState().user.email;
+    const data: any = merge(formData, { email });
+    UserController.changeProfile(data);
     this.showMainSettings();
-  }
-  onClickExit(): void {
-    renderPage("login");
-    console.log("click");
   }
   onShowEditPassword(): void {
     this.setProps({ disabled: false });
@@ -82,10 +107,15 @@ export class SettingsPage extends Block {
     this.setProps({ hideLink: true });
   }
   protected componentDidUpdate(oldProps: any, newProps: any): boolean {
-    this.children.changeUserDataForm.setProps({ disabled: newProps.disabled });
+    this.children.changeUserDataForm.setProps({
+      disabled: newProps.disabled,
+    });
     return true;
   }
   render() {
-    return this.compile(template, { ...this.props });
+    return this.compile(template, this.props);
   }
 }
+const withUser = withStore((state) => ({ ...state.user }));
+
+export const SettingsPage = withUser(SettingsPageBase);

@@ -1,0 +1,13 @@
+@import "../../../variable";
+
+.add-chats{
+  padding: 5px;
+
+  button{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: $base-white;
+    width: 100%;
+    cursor: pointer;
+  }
+}

@@ -1,25 +1,34 @@
 import Block from "../../../utils/Block";
 import template from "./ChangeUserData.hbs";
 import { Label } from "../../general/Label";
+import { withStore } from "../../../utils/Store";
 
 interface ChangePasswordProps {
-  disabled: boolean;
+  disabled: string;
   events: {
-    submit: (e: { preventDefault: () => void; target: HTMLFormElement | undefined }) => void;
+    submit: (e: {
+      preventDefault: () => void;
+      target: HTMLFormElement | undefined;
+    }) => void;
   };
+  first_name?: string;
+  second_name?: string;
+  display_name?: string;
+  login?: string;
+  phone?: string;
 }
 
-export class ChangeUserDataForm extends Block<ChangePasswordProps> {
+class ChangeUserDataFormBase extends Block<ChangePasswordProps> {
   constructor(props: ChangePasswordProps) {
     super({ ...props });
   }
-  protected init(): void {
+  protected init() {
     this.children.login = new Label({
       label: "Логин",
       type: "text",
       id: "login",
       name: "login",
-      value: "ivan",
+      value: this.props.login,
       disabled: this.props.disabled,
     });
     this.children.name = new Label({
@@ -27,7 +36,7 @@ export class ChangeUserDataForm extends Block<ChangePasswordProps> {
       type: "text",
       id: "first_name",
       name: "first_name",
-      value: "Иван",
+      value: this.props.first_name,
       disabled: this.props.disabled,
     });
     this.children.secondName = new Label({
@@ -35,7 +44,7 @@ export class ChangeUserDataForm extends Block<ChangePasswordProps> {
       type: "text",
       id: "second_name",
       name: "second_name",
-      value: "Иванов",
+      value: this.props.second_name,
       disabled: this.props.disabled,
     });
     this.children.displayName = new Label({
@@ -43,7 +52,7 @@ export class ChangeUserDataForm extends Block<ChangePasswordProps> {
       type: "text",
       id: "settings-display_name",
       name: "display_name",
-      value: "Ванек",
+      value: this.props.display_name,
       disabled: this.props.disabled,
     });
     this.children.phone = new Label({
@@ -51,7 +60,7 @@ export class ChangeUserDataForm extends Block<ChangePasswordProps> {
       type: "phone",
       id: "phone",
       name: "phone",
-      value: "899773444436",
+      value: this.props.phone,
       disabled: this.props.disabled,
     });
   }
@@ -59,7 +68,9 @@ export class ChangeUserDataForm extends Block<ChangePasswordProps> {
     for (const key in this.children) {
       const child = this.children[key];
       if (child instanceof Label) {
-        child.setProps({ disabled: newProps.disabled });
+        child.setProps({
+          disabled: newProps.disabled,
+        });
       }
     }
     return true;
@@ -68,3 +79,7 @@ export class ChangeUserDataForm extends Block<ChangePasswordProps> {
     return this.compile(template, { ...this.props });
   }
 }
+
+const withUser = withStore((state) => ({ ...state.user }));
+
+export const ChangeUserDataForm = withUser(ChangeUserDataFormBase);

@@ -4,34 +4,45 @@ import { ErrorPage } from "./pages/Error";
 import { ChatsPage } from "./pages/Chats";
 import { SettingsPage } from "./pages/Settings";
 import "./main.scss";
+import Router from "./utils/Router";
+import AuthController from "./controllers/AuthController";
+import ChatsController from "./controllers/ChatsController";
 
-const root = document.querySelector("#app");
-const startPage = new SettingsPage();
+enum Routes {
+  Index = "/",
+  Register = "/sign-up",
+  Profile = "/settings",
+  Chats = "/messenger",
+  Error = "/404",
+}
+window.addEventListener("DOMContentLoaded", async () => {
+  Router.use(Routes.Index, LoginPage)
+    .use(Routes.Register, RegistrationPage)
+    .use(Routes.Profile, SettingsPage)
+    .use(Routes.Chats, ChatsPage)
+    .use(Routes.Error, ErrorPage);
 
-window.addEventListener("DOMContentLoaded", () => {
-  root?.append(startPage.getContent()!);
-});
+  let isProtectedRoute = true;
 
-function renderPage(pageName: string) {
-  let page = new LoginPage();
-  switch (pageName) {
-    case "login":
-      page = new LoginPage();
+  switch (window.location.pathname) {
+    case Routes.Index:
+    case Routes.Register:
+      isProtectedRoute = false;
       break;
-    case "registration":
-      page = new RegistrationPage();
-      break;
-    case "chats":
-      page = new ChatsPage();
-      break;
-    case "settingsPage":
-      page = new SettingsPage();
-      break;
-    default:
-      page = new ErrorPage();
+    case Routes.Chats:
+      await ChatsController.getAllChats();
       break;
   }
-  root.innerHTML = "";
-  root?.append(page.getContent()!);
-}
-window.renderPage = renderPage;
+
+  try {
+    await AuthController.fetchUser();
+
+    Router.start();
+  } catch (e) {
+    Router.start();
+
+    if (isProtectedRoute) {
+      Router.go(Routes.Index);
+    }
+  }
+});

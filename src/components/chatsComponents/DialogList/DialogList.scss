@@ -1,4 +1,5 @@
 @import "../../../variable";
+@import "../AddModal/AddModal";
 
 @mixin bgc {
   background-color: $second-blue;
@@ -45,7 +46,7 @@
 }
 
 .dialog-list {
-  flex: 0 0 89%;
+  flex: 0 0 87%;
 
   @include bgc;
 
@@ -56,5 +57,15 @@
     background-color: $base-white;
     border-radius: 10px;
     margin: 5px 0;
+    position: relative;
+
+    .id-wrapper{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
   }
 }
