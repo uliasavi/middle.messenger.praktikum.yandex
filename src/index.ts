@@ -29,9 +29,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     case Routes.Register:
       isProtectedRoute = false;
       break;
-    case Routes.Chats:
-      await ChatsController.getAllChats();
-      break;
   }
 
   try {
@@ -42,7 +39,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     Router.start();
 
     if (isProtectedRoute) {
-      Router.go(Routes.Index);
+      Router.go(Routes.Error);
     }
   }
 });

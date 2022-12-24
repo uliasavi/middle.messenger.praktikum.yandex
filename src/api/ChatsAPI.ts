@@ -18,6 +18,11 @@ export default class ChatsAPI extends BaseAPI {
   public addUserToChat(data: addUsersData) {
     return this.http.put("/users", data);
   }
+  async getToken(id: number): Promise<string> {
+    const response = await this.http.post<{ token: string }>(`/token/${id}`);
+
+    return response.token;
+  }
   create = undefined;
   delete = undefined;
   read = undefined;

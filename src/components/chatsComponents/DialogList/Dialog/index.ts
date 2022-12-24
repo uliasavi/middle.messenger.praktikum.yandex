@@ -2,7 +2,7 @@ import Block from "../../../../utils/Block";
 import template from "./Dialog.hbs";
 
 interface DialogProps {
-  id: string;
+  id: number;
   title: string;
   unread_count: number;
   events: {

@@ -41,14 +41,27 @@ class DialogListBase extends Block<DialogListProps> {
     this.children.chats = this.createChats(this.props);
   }
   private createChats(props: DialogListProps) {
-    if (!props.chats) {
-      return;
+    if (!props.chats || props.chats.length == 0) {
+      const info = {
+        avatar: null,
+        created_by: 0,
+        id: 0,
+        last_message: "",
+        title: "",
+        unread_count: 0,
+      };
+      return new Dialog({
+        ...info,
+        events: {
+          click: (e: { target: { id: number } }) => {
+            this.chooseChat(e);
+          },
+        },
+      });
     }
     return props.chats.map((data) => {
       return new Dialog({
-        id: data.id,
-        title: data.title,
-        unread_count: data.unread_count,
+        ...data,
         events: {
           click: (e: { target: { id: number } }) => {
             this.chooseChat(e);
@@ -75,7 +88,10 @@ class DialogListBase extends Block<DialogListProps> {
     }
     this.children.modal.setProps({ class: "hide" });
   }
-  protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+  protected componentDidUpdate(
+    oldProps: DialogListProps,
+    newProps: DialogListProps
+  ): boolean {
     this.children.modal.setProps({
       openModal: newProps.openModal,
     });
@@ -88,6 +104,6 @@ class DialogListBase extends Block<DialogListProps> {
   }
 }
 
-const withChats = withStore((state) => ({ ...state.chats }));
+const withChats = withStore((state) => ({ chats: [...(state.chats || [])] }));
 
 export const DialogList = withChats(DialogListBase);

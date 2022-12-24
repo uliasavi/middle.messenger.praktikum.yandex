@@ -88,13 +88,6 @@
         display: flex;
         align-items: stretch;
 
-        .friend-avatar {
-          width: 55px;
-          height: 55px;
-          border-radius: 100%;
-          background-color: $base-white;
-        }
-
         .friend-name {
           font-family: Caveat, sans-serif;
           font-weight: 700;
@@ -111,6 +104,8 @@
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-end;
+      overflow-y: scroll;
+      overflow-x: hidden;
     }
 
     .typing-place {

@@ -10,7 +10,6 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 
   .avatar {
     flex: 0 0 50px;
@@ -27,6 +26,7 @@
   }
 
   .name {
+    flex: 0 1 100%;
     font-size: 20px;
     font-family: Caveat, sans-serif;
     line-height: 30px;
@@ -34,6 +34,7 @@
   }
 
   .unread-message {
+    flex: 0 1 20px;
     width: 20px;
     height: 20px;
     border-radius: 100%;
