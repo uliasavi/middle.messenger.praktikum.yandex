@@ -41,6 +41,7 @@ class AuthController {
       store.set("user", user);
     } catch (e) {
       console.error("fetchUser:", e);
+      Router.go("/");
     }
   }
 }

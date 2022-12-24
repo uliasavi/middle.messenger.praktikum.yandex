@@ -32,13 +32,14 @@ class MessagesController {
 
   receivedMessage(chatId: number, message: Message | Message[]) {
     let messagesToAdd: Message[] = [];
-    
+
     if (Array.isArray(message)) {
       messagesToAdd = message.reverse();
     } else {
       messagesToAdd.push(message);
     }
-    const currentMessages = (store.getState().messages || {})[chatId] || [];
+    let currentMessages = (store.getState().messages || {})[chatId] || [];
+    currentMessages = currentMessages.reverse();
     messagesToAdd = [...currentMessages, ...messagesToAdd];
     const stringChatId = chatId.toString();
     store.set(`messages.${stringChatId}`, messagesToAdd);

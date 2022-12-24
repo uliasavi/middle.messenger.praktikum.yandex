@@ -6,7 +6,6 @@ import { SettingsPage } from "./pages/Settings";
 import "./main.scss";
 import Router from "./utils/Router";
 import AuthController from "./controllers/AuthController";
-import ChatsController from "./controllers/ChatsController";
 
 enum Routes {
   Index = "/",

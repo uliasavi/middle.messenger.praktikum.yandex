@@ -15,7 +15,7 @@ interface MessageProps {
 }
 interface MessagesProps {
   selectedChat: number | undefined;
-  messages: MessageProps[] | []| undefined;
+  messages: MessageProps[] | [] | undefined;
   userId: number;
 }
 export class Messages extends Block<MessagesProps> {
@@ -26,7 +26,7 @@ export class Messages extends Block<MessagesProps> {
     this.children.messages = this.createMessages(this.props);
   }
   createMessages(props: MessagesProps) {
-    if (props.messages.length == 0) {
+    if (!props.messages || props.messages.length == 0) {
       const info = {
         chat_id: 0,
         content: "",
@@ -38,18 +38,23 @@ export class Messages extends Block<MessagesProps> {
         user_id: 0,
         isMy: false,
       };
-      if (info.user_id == this.props.userId) {
-        info.isMy = true;
-      }
       return new Message({ ...info });
     }
-    const activeChatMessages = props.messages.map((data) => {
+    const reverseMessage = props.messages.reverse();
+    const activeChatMessages = reverseMessage.map((data) => {
       if (data.user_id == this.props.userId) {
         data.isMy = true;
       }
       return new Message({ ...data });
     });
     return activeChatMessages;
+  }
+  setScrollToBottom() {
+    const chatHistory = document.getElementById("messagesBody");
+    if (chatHistory) {
+      const chatHeight = chatHistory.scrollHeight;
+      chatHistory.scrollTop = chatHeight;
+    }
   }
   protected componentDidUpdate(oldProps: any, newProps: any): boolean {
     this.children.messages = this.createMessages(newProps);
