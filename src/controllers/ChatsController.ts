@@ -21,11 +21,10 @@ class ChatsController {
   async getAllChats() {
     try {
       const chats = await this.api.getAllChats();
-      const promises = chats.map((chat: DialogMiniInterface) => {
-        return messagesController.connect(chat.id);
-      });
-      await Promise.all(promises);
       store.set("chats", chats);
+      chats.map(async (chat:DialogMiniInterface) => {
+          await messagesController.connect(chat.id);
+      });
     } catch (e) {
       console.error("getAllChats:", e);
     }
