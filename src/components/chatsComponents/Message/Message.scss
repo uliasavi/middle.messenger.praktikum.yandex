@@ -3,12 +3,11 @@
 .message {
   width: 100%;
   height: fit-content;
-  margin: 5px;
   display: flex;
   justify-content: flex-start;
   margin: 5px 0;
 
-  .content-wrapper{
+  .content-wrapper {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -24,7 +23,7 @@
     padding: 5px 15px;
   }
 
-  .user{
+  .user {
     width: fit-content;
     background-color: $base-white;
     padding: 2px 5px;
@@ -36,17 +35,17 @@
   &.my {
     justify-content: flex-end;
 
-    .content-wrapper{
+    .content-wrapper {
       align-items: flex-end;
     }
 
-    .user{
+    .user {
       display: none;
     }
   }
 }
 
-.empty-chat{
+.empty-chat {
   position: absolute;
   left: 50%;
   top: 50%;

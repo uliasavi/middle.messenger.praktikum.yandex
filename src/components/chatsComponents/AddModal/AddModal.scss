@@ -1,20 +1,20 @@
 @import "../../../variable";
 
-.add-chat-modal-wrapper{
+.add-chat-modal-wrapper {
   width: 298px;
 
-  &.hide{
+  &.hide {
     display: none;
     width: 0;
   }
   
-  .add-chat-modal{
+  .add-chat-modal {
     width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 10px;
 
-    input{
+    input {
       width: 30%;
       background-color: $base-white;
       color: $base-color;
@@ -34,6 +34,5 @@
         cursor: auto;
       }
     }
-
   }
 }

@@ -1,6 +1,9 @@
 {
     "extends": "stylelint-config-standard-scss",
     "ignoreFiles": [
-        "./dist"
-    ]
+        "dist"
+    ],
+    "rules": {
+        "no-eol-whitespace": null
+    }
 }

@@ -1,15 +1,15 @@
 @import "../../../variable";
 
-.chat-settings{
+.chat-settings {
   display: flex;
   align-items: center;
   font-family: "JetBrains Mono", sans-serif;
   gap: 20px;
 
-  li{
+  li {
     list-style-type: none;
     
-    button{
+    button {
       background-color: $base-white;
       color: $base-color;
       white-space: nowrap;
