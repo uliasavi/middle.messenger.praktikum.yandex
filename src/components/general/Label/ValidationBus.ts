@@ -24,7 +24,11 @@ function isDisabledSubmit() {
   }
 }
 function hideErrorMessage(context: {
-  children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } };
+  children: {
+    validation: {
+      setProps: (arg0: { isUnvalid: boolean; message: string }) => void;
+    };
+  };
 }) {
   context.children.validation.setProps({
     isUnvalid: false,
@@ -33,14 +37,30 @@ function hideErrorMessage(context: {
 }
 export function loginValidation(
   value: string,
-  context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
+  context: {
+    children: {
+      validation: {
+        setProps: (arg0: { isUnvalid: boolean; message: string }) => void;
+      };
+    };
+  }
 ) {
+  const regularExp = new RegExp("^.*[^A-zА-яЁё].*$");
+  const isNotCorrect = regularExp.test(value);
   if (value.length < 2) {
     validationObserver.login = false;
     isDisabledSubmit();
     context.children.validation.setProps({
       isUnvalid: true,
       message: "Логин должен содержать больше одного символа",
+    });
+  } else if (isNotCorrect) {
+    validationObserver.login = false;
+    isDisabledSubmit();
+    context.children.validation.setProps({
+      isUnvalid: true,
+      message:
+        "Логин должен содержать только буквы, цифры и спец сиволы недопустимы",
     });
   } else {
     validationObserver.login = true;
@@ -50,7 +70,13 @@ export function loginValidation(
 }
 export function passwordValidation(
   value: string,
-  context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
+  context: {
+    children: {
+      validation: {
+        setProps: (arg0: { isUnvalid: boolean; message: string }) => void;
+      };
+    };
+  }
 ) {
   if (value.length < 8) {
     validationObserver.password = false;
@@ -67,7 +93,13 @@ export function passwordValidation(
 }
 export function oldPasswordValidation(
   value: string,
-  context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
+  context: {
+    children: {
+      validation: {
+        setProps: (arg0: { isUnvalid: boolean; message: string }) => void;
+      };
+    };
+  }
 ) {
   if (value.length < 8) {
     validationObserver.oldPassword = false;
@@ -84,7 +116,13 @@ export function oldPasswordValidation(
 }
 export function newPasswordValidation(
   value: string,
-  context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
+  context: {
+    children: {
+      validation: {
+        setProps: (arg0: { isUnvalid: boolean; message: string }) => void;
+      };
+    };
+  }
 ) {
   if (value.length < 8) {
     validationObserver.newPassword = false;
@@ -101,7 +139,13 @@ export function newPasswordValidation(
 }
 export function emailValidation(
   value: string,
-  context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
+  context: {
+    children: {
+      validation: {
+        setProps: (arg0: { isUnvalid: boolean; message: string }) => void;
+      };
+    };
+  }
 ) {
   const regularExp = /\S+@\S+\.\S+/;
   const isCorrectEmail = regularExp.test(value);
@@ -120,9 +164,16 @@ export function emailValidation(
 }
 export function phoneValidation(
   value: string,
-  context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
+  context: {
+    children: {
+      validation: {
+        setProps: (arg0: { isUnvalid: boolean; message: string }) => void;
+      };
+    };
+  }
 ) {
-  const regularExp = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+  const regularExp =
+    /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
   const isCorrectPhone = regularExp.test(value);
   if (!isCorrectPhone) {
     validationObserver.phone = false;
@@ -139,14 +190,30 @@ export function phoneValidation(
 }
 export function nameValidation(
   value: string,
-  context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
+  context: {
+    children: {
+      validation: {
+        setProps: (arg0: { isUnvalid: boolean; message: string }) => void;
+      };
+    };
+  }
 ) {
+  const regularExp = new RegExp("^.*[^A-zА-яЁё].*$");
+  const isNotCorrect = regularExp.test(value);
   if (value.length < 2) {
     validationObserver.name = false;
     isDisabledSubmit();
     context.children.validation.setProps({
       isUnvalid: true,
       message: "Имя должно содержать больше одного символа",
+    });
+  } else if (isNotCorrect) {
+    validationObserver.login = false;
+    isDisabledSubmit();
+    context.children.validation.setProps({
+      isUnvalid: true,
+      message:
+        "Имя должно содержать только буквы, цифры и спец сиволы недопустимы",
     });
   } else {
     validationObserver.name = true;
@@ -156,14 +223,30 @@ export function nameValidation(
 }
 export function displayNameValidation(
   value: string,
-  context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
+  context: {
+    children: {
+      validation: {
+        setProps: (arg0: { isUnvalid: boolean; message: string }) => void;
+      };
+    };
+  }
 ) {
+  const regularExp = new RegExp("^.*[^A-zА-яЁё].*$");
+  const isNotCorrect = regularExp.test(value);
   if (value.length < 2) {
     validationObserver.displayName = false;
     isDisabledSubmit();
     context.children.validation.setProps({
       isUnvalid: true,
       message: "Имя должно содержать больше одного символа",
+    });
+  } else if (isNotCorrect) {
+    validationObserver.login = false;
+    isDisabledSubmit();
+    context.children.validation.setProps({
+      isUnvalid: true,
+      message:
+        "Имя должно содержать только буквы, цифры и спец сиволы недопустимы",
     });
   } else {
     validationObserver.displayName = true;
@@ -173,14 +256,30 @@ export function displayNameValidation(
 }
 export function secondnameValidation(
   value: string,
-  context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
+  context: {
+    children: {
+      validation: {
+        setProps: (arg0: { isUnvalid: boolean; message: string }) => void;
+      };
+    };
+  }
 ) {
+  const regularExp = new RegExp("^.*[^A-zА-яЁё].*$");
+  const isNotCorrect = regularExp.test(value);
   if (value.length < 2) {
     validationObserver.secondname = false;
     isDisabledSubmit();
     context.children.validation.setProps({
       isUnvalid: true,
       message: "Фамилия должна содержать больше одного символа",
+    });
+  } else if (isNotCorrect) {
+    validationObserver.login = false;
+    isDisabledSubmit();
+    context.children.validation.setProps({
+      isUnvalid: true,
+      message:
+        "Фамилия должна содержать только буквы, цифры и спец сиволы недопустимы",
     });
   } else {
     validationObserver.secondname = true;
@@ -190,7 +289,13 @@ export function secondnameValidation(
 }
 export function repeatPasswordValidation(
   value: string,
-  context: { children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } } }
+  context: {
+    children: {
+      validation: {
+        setProps: (arg0: { isUnvalid: boolean; message: string }) => void;
+      };
+    };
+  }
 ) {
   const firstInputPassword = document.getElementById("password") as Element;
   const firstPassword: string = firstInputPassword.value;
