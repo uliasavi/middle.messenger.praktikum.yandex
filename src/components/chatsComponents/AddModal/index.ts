@@ -6,17 +6,12 @@ interface AddModalProps {
   btnTitle: string;
   class: string;
   events: {
-    submit: (e: {
-      preventDefault: () => void;
-      target: HTMLFormElement | undefined;
-    }) => void;
+    submit: (e: Event) => void;
   };
 }
 export class AddModal extends Block<AddModalProps> {
   constructor(props: AddModalProps) {
-    super({
-      ...props,
-    });
+    super(props);
   }
   render() {
     return this.compile(template, { ...this.props });

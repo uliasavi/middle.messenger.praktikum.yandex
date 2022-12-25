@@ -22,7 +22,7 @@ interface DialogListProps {
 }
 class DialogListBase extends Block<DialogListProps> {
   constructor(props: DialogListProps) {
-    super({ ...props });
+    super(props);
   }
   protected init(): void {
     this.children.button = new NewChat({
@@ -77,14 +77,11 @@ class DialogListBase extends Block<DialogListProps> {
   addChats() {
     this.children.modal.setProps({ class: "" });
   }
-  AddModal(e: {
-    preventDefault: () => void;
-    target: HTMLFormElement | undefined;
-  }) {
+  AddModal(e: Event) {
     e.preventDefault();
     const formData: any = Object.fromEntries(new FormData(e.target).entries());
     if (formData.title) {
-      ChatsController.createChat(formData.title);
+      ChatsController.create(formData.title);
     }
     this.children.modal.setProps({ class: "hide" });
   }

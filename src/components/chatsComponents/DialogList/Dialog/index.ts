@@ -11,9 +11,7 @@ interface DialogProps {
 }
 export class Dialog extends Block<DialogProps> {
   constructor(props: DialogProps) {
-    super({
-      ...props,
-    });
+    super(props);
   }
   render() {
     return this.compile(template, { ...this.props });

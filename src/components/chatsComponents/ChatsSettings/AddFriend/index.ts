@@ -9,9 +9,7 @@ interface AddFriendProps {
 }
 export class AddFriend extends Block<AddFriendProps> {
   constructor(props: AddFriendProps) {
-    super({
-      ...props,
-    });
+    super(props);
   }
   render() {
     return this.compile(template, { ...this.props });

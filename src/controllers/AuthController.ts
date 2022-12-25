@@ -2,6 +2,7 @@ import AuthAPI from "../api/AuthAPI";
 import { SignInData, SignUpData } from "../interfaces/auth";
 import store from "../utils/Store";
 import Router from "../utils/Router";
+import MessagesController from "./MessagesController";
 
 class AuthController {
   private api = new AuthAPI();
@@ -23,11 +24,13 @@ class AuthController {
       Router.go("/messenger");
     } catch (e) {
       console.error("signin:", e);
+      Router.go("/");
     }
   }
 
   async logout() {
     try {
+      MessagesController.closeAll();
       await this.api.logout();
       Router.go("/");
     } catch (e) {
@@ -36,13 +39,8 @@ class AuthController {
   }
 
   async fetchUser() {
-    try {
-      const user = await this.api.read();
-      store.set("user", user);
-    } catch (e) {
-      console.error("fetchUser:", e);
-      Router.go("/");
-    }
+    const user = await this.api.read();
+    store.set("user", user);
   }
 }
 

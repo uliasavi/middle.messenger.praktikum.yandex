@@ -9,11 +9,11 @@ interface MessageProps {
   time: string;
   type: string;
   user_id: number;
-  isMy:boolean;
+  isMy?: boolean | undefined;
 }
 export class Message extends Block<MessageProps> {
   constructor(props: MessageProps) {
-    super({ ...props });
+    super(props);
   }
 
   render() {

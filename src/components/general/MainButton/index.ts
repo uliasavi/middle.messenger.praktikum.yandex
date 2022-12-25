@@ -11,7 +11,7 @@ interface ButtonProps {
 
 export class MainButton extends Block<ButtonProps> {
   constructor(props: ButtonProps) {
-    super({ ...props });
+    super(props);
   }
 
   render() {

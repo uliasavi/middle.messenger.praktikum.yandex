@@ -30,9 +30,9 @@ class ChatsController {
       console.error("getAllChats:", e);
     }
   }
-  async createChat(chatsName: string) {
+  async create(chatsName: string) {
     try {
-      await this.api.createChat(chatsName);
+      await this.api.create(chatsName);
       this.getAllChats();
     } catch (e) {
       console.error("createChat:", chatsName, e);

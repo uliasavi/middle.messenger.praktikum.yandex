@@ -11,6 +11,9 @@ export default class UserAPI extends BaseAPI {
   public changeProfile(userData: UserData) {
     return this.http.put("/profile", userData);
   }
+  public changeAvatar(userData: FormData) {
+    return this.http.put("/profile/avatar", userData);
+  }
   public getProfile(id: number) {
     return this.http.get(`/${id}`);
   }

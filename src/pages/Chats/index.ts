@@ -72,10 +72,7 @@ class ChatsPageBase extends Block<ChatsPageProps> {
     });
     this.children.typingPlace = new TypingPlace({
       events: {
-        submit: (e: {
-          preventDefault: () => void;
-          target: HTMLFormElement | undefined;
-        }): void => {
+        submit: (e: Event): void => {
           return this.sendMessage(e);
         },
       },
@@ -110,10 +107,7 @@ class ChatsPageBase extends Block<ChatsPageProps> {
     
     return activeChatMessages;
   }
-  sendMessage(e: {
-    preventDefault: () => void;
-    target: HTMLFormElement | undefined;
-  }): void {
+  sendMessage(e: Event): void {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target).entries());
     if (formData.message || formData.file.size != 0) {

@@ -40,10 +40,7 @@ export class ChatSettings extends Block<ChatSettingsProps> {
       },
     });
   }
-  addModal(e: {
-    preventDefault: () => void;
-    target: HTMLFormElement | undefined;
-  }) {
+  addModal(e: Event) {
     e.preventDefault();
     const formData: any = Object.fromEntries(new FormData(e.target).entries());
     const data: addUsersData = {

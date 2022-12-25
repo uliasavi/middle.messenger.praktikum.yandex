@@ -12,10 +12,7 @@ export class RegistrationPage extends Block {
   init() {
     this.children.registrationForm = new RegistrationForm({
       events: {
-        submit: (e: {
-          preventDefault: () => void;
-          target: HTMLFormElement | undefined;
-        }): void => this.onSubmit(e),
+        submit: (e: Event): void => this.onSubmit(e),
       },
     });
     this.children.link = new Link({
@@ -24,10 +21,7 @@ export class RegistrationPage extends Block {
       to: "/",
     });
   }
-  onSubmit(e: {
-    preventDefault: () => void;
-    target: HTMLFormElement | undefined;
-  }): void {
+  onSubmit(e: Event): void {
     e.preventDefault();
     const formData: any  = Object.fromEntries(new FormData(e.target).entries());
     delete formData.password_repeat;

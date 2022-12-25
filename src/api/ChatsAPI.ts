@@ -1,4 +1,5 @@
 import BaseAPI from "./BaseAPI";
+import { UserData } from "../interfaces/auth";
 
 interface addUsersData {
   users: number[];
@@ -12,7 +13,7 @@ export default class ChatsAPI extends BaseAPI {
   public getAllChats() {
     return this.http.get();
   }
-  public createChat(chatsName: string) {
+  public create(chatsName: string) {
     return this.http.post("", { title: chatsName });
   }
   public addUserToChat(data: addUsersData) {
@@ -23,7 +24,6 @@ export default class ChatsAPI extends BaseAPI {
 
     return response.token;
   }
-  create = undefined;
   delete = undefined;
   read = undefined;
   update = undefined;

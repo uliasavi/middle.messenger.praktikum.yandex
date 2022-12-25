@@ -2,14 +2,12 @@ import Block from "../../../utils/Block";
 import template from "./ChangeUserData.hbs";
 import { Label } from "../../general/Label";
 import { withStore } from "../../../utils/Store";
+import { InputFile } from "../InputFile";
 
 interface ChangePasswordProps {
   disabled: string;
   events: {
-    submit: (e: {
-      preventDefault: () => void;
-      target: HTMLFormElement | undefined;
-    }) => void;
+    submit: (e: Event) => void;
   };
   first_name?: string;
   second_name?: string;
@@ -20,9 +18,10 @@ interface ChangePasswordProps {
 
 class ChangeUserDataFormBase extends Block<ChangePasswordProps> {
   constructor(props: ChangePasswordProps) {
-    super({ ...props });
+    super(props);
   }
   protected init() {
+    this.children.inputAvatar = new InputFile({});
     this.children.login = new Label({
       label: "Логин",
       type: "text",

@@ -7,9 +7,7 @@ interface DialogHeaderProps {
 }
 export class DialogHeader extends Block<DialogHeaderProps> {
   constructor(props: DialogHeaderProps) {
-    super({
-      ...props,
-    });
+    super(props);
   }
   render() {
     return this.compile(template, { ...this.props });

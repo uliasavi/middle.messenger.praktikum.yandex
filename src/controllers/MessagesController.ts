@@ -8,26 +8,47 @@ export interface Message {
   type: string;
   user_id: number;
   content: string;
+  file?: {
+    id: number;
+    user_id: number;
+    path: string;
+    filename: string;
+    content_type: string;
+    content_size: number;
+    upload_date: string;
+  }
 }
 
 class MessagesController {
-  private transports: Record<number, WSTransport> = {};
+  private transports: Map<number, WSTransport> = new Map();
 
   async connect(chatId: number) {
+    if (this.transports.has(chatId)) {
+      return;
+    }
     const token = await ChatsController.getToken(chatId);
     const userId = store.getState().user?.id;
 
     const transport = new WSTransport(
       `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`
     );
+    this.transports.set(chatId, transport);
+
     await transport.connect();
-    transport.on(
-      WSTransportEvents.Message,
-      this.receivedMessage.bind(this, chatId)
-    );
-    this.transports[chatId] = transport;
+
+    this.subscribe(transport, chatId);
 
     this.fetchOldMessages(chatId);
+  }
+
+  private subscribe(transport: WSTransport, id: number) {
+    transport.on(WSTransportEvents.Message, (message) =>
+      this.receivedMessage(id, message)
+    );
+    transport.on(WSTransportEvents.Close, () => this.onClose(id));
+  }
+  private onClose(id: number) {
+    this.transports.delete(id);
   }
 
   receivedMessage(chatId: number, message: Message | Message[]) {
@@ -46,7 +67,7 @@ class MessagesController {
   }
 
   fetchOldMessages(chatId: number) {
-    const transport = this.transports[chatId];
+    const transport = this.transports.get(chatId);
     if (!transport) {
       throw new Error("Connection isn't available");
     }
@@ -57,7 +78,7 @@ class MessagesController {
   }
 
   sendMessage(chatId: number, content: string) {
-    const transport = this.transports[chatId];
+    const transport = this.transports.get(chatId);
     if (!transport) {
       throw new Error("Connection isn't available");
     }
@@ -65,6 +86,12 @@ class MessagesController {
       type: "message",
       content,
     });
+  }
+
+  closeAll() {
+    Array.from(this.transports.values()).forEach((transports) =>
+      transports.close()
+    );
   }
 }
 

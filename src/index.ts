@@ -32,13 +32,16 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   try {
     await AuthController.fetchUser();
-
     Router.start();
+    switch (window.location.pathname) {
+      case Routes.Index:
+        Router.go(Routes.Chats);
+        break;
+    }
   } catch (e) {
     Router.start();
-
     if (isProtectedRoute) {
-      Router.go(Routes.Error);
+      Router.go(Routes.Index);
     }
   }
 });

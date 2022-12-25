@@ -7,10 +7,10 @@ import UserController from "../../controllers/UserController";
 import AuthController from "../../controllers/AuthController";
 import store, { withStore } from "../../utils/Store";
 import { merge } from "../../utils/helpers";
-
+import ResourcesController from "../../controllers/ResourcesController"
 interface SettingsPageProps {
   display_name: string;
-  avatar: string;
+  avatar: any;
   disabled: boolean;
   hidePasswordChange: boolean;
   hideDataChange: boolean;
@@ -22,6 +22,7 @@ class SettingsPageBase extends Block<SettingsPageProps> {
   constructor(props: SettingsPageProps) {
     super({
       ...props,
+      avatar: `https://ya-praktikum.tech/api/v2/resources/${store.getState().user.avatar}`,
       disabled: true,
       hidePasswordChange: false,
       hideDataChange: true,
@@ -38,10 +39,7 @@ class SettingsPageBase extends Block<SettingsPageProps> {
     this.children.changeUserDataForm = new ChangeUserDataForm({
       disabled: this.props.disabled,
       events: {
-        submit: (e: {
-          preventDefault: () => void;
-          target: HTMLFormElement | undefined;
-        }) => this.changeUserData(e),
+        submit: (e: Event) => this.changeUserData(e),
       },
     });
     this.children.linkChangeData = new Button({
@@ -75,21 +73,23 @@ class SettingsPageBase extends Block<SettingsPageProps> {
     this.setProps({ hideDataChange: true });
     this.setProps({ hideLink: false });
   }
-  changePassword(e: {
-    preventDefault: () => void;
-    target: HTMLFormElement | undefined;
-  }): void {
+  changePassword(e: Event): void {
     e.preventDefault();
     const formData: any = Object.fromEntries(new FormData(e.target).entries());
     UserController.changePassword(formData);
     this.showMainSettings();
   }
-  changeUserData(e: {
-    preventDefault: () => void;
-    target: HTMLFormElement | undefined;
-  }): void {
+  changeAvatar() {
+    const input = document.getElementById("avatar");
+    const avatar = input?.files[0];
+    const formData = new FormData();
+    formData.append("avatar", avatar);
+    UserController.changeAvatar(formData);
+  }
+  changeUserData(e: Event): void {
     e.preventDefault();
     const formData: any = Object.fromEntries(new FormData(e.target).entries());
+    this.changeAvatar();
     const email = store.getState().user.email;
     const data: any = merge(formData, { email });
     UserController.changeProfile(data);

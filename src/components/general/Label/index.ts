@@ -28,7 +28,7 @@ interface Context {
 }
 export class Label extends Block<LabelProps> {
   constructor(props: LabelProps) {
-    super({ ...props });
+    super(props);
   }
   init() {
     this.children.input = new Input({

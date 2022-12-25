@@ -11,7 +11,7 @@ interface MessageProps {
   time: string;
   type: string;
   user_id: number;
-  isMy?: boolean;
+  isMy?: boolean | undefined;
 }
 interface MessagesProps {
   selectedChat: number | undefined;
@@ -20,7 +20,7 @@ interface MessagesProps {
 }
 export class Messages extends Block<MessagesProps> {
   constructor(props: MessagesProps) {
-    super({ ...props });
+    super(props);
   }
   protected init(): void {
     this.children.messages = this.createMessages(this.props);

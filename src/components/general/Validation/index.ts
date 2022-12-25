@@ -8,7 +8,7 @@ interface ValidationProps {
 
 export class Validation extends Block<ValidationProps> {
   constructor(props: ValidationProps) {
-    super({ ...props });
+    super(props);
   }
 
   render() {

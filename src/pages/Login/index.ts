@@ -26,10 +26,7 @@ export class LoginPage extends Block {
       class: "nav-link",
     });
   }
-  onSubmit(e: {
-    preventDefault: () => void;
-    target: HTMLFormElement | undefined;
-  }): void {
+  onSubmit(e: Event): void {
     e.preventDefault();
     const formData: any = Object.fromEntries(new FormData(e.target).entries());
     AuthController.signin(formData);

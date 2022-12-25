@@ -1,6 +1,5 @@
 @import "../../variable";
 @import "../../components/chatsComponents/DialogList/DialogList";
-@import "../../components/chatsComponents/InputFile/InputFile";
 @import "../../components/chatsComponents/Message/Message";
 @import "../../components/chatsComponents/NewChat/NewChat";
 @import "../../components/chatsComponents/ChatsSettings/ChatsSettings";
@@ -87,6 +86,13 @@
         flex: 0 1 50%;
         display: flex;
         align-items: stretch;
+
+        .friend-avatar {
+          width: 55px;
+          height: 55px;
+          border-radius: 100%;
+          background-color: $base-white;
+        }
 
         .friend-name {
           font-family: Caveat, sans-serif;
