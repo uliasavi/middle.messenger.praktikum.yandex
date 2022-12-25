@@ -3,5 +3,5 @@
   "rules": {
     "no-eol-whitespace": null
   },
-  "ignoreFiles": ["dist"]
+  "ignoreFiles": ["./dist/**/*.css"]
 }
