@@ -1,6 +1,7 @@
 {
-    "extends": "stylelint-config-standard-scss",
-    "rules": {
-        "no-eol-whitespace": null
-    }
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "no-eol-whitespace": null
+  },
+  "ignoreFiles": ["dist"]
 }
