@@ -4,13 +4,13 @@ import { Label } from "../../general/Label";
 
 interface ChangePasswordProps {
   events: {
-    submit: (e: { preventDefault: () => void; target: HTMLFormElement | undefined }) => void;
+    submit: (e: Event) => void;
   };
 }
 
 export class ChangePasswordForm extends Block<ChangePasswordProps> {
   constructor(props: ChangePasswordProps) {
-    super({ ...props });
+    super(props);
   }
   protected init(): void {
     this.children.oldPassword = new Label({

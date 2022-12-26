@@ -2,8 +2,9 @@
     <div class="settings">
         <div class="yours-picture">
             <div class="avatar">
+                <img src="{{avatar}}" width="100%" height="100%">
             </div>
-            <h2 class="name">Иван</h2>
+            <h2 class="name">{{display_name}}</h2>
         </div>
         {{#if hideDataChange}}{{{changeUserDataForm}}}{{/if}}
         {{#if hidePasswordChange}}

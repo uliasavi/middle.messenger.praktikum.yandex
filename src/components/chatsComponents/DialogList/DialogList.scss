@@ -1,4 +1,5 @@
 @import "../../../variable";
+@import "../AddModal/AddModal";
 
 @mixin bgc {
   background-color: $second-blue;
@@ -9,7 +10,6 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 
   .avatar {
     flex: 0 0 50px;
@@ -26,6 +26,7 @@
   }
 
   .name {
+    flex: 0 1 100%;
     font-size: 20px;
     font-family: Caveat, sans-serif;
     line-height: 30px;
@@ -33,6 +34,7 @@
   }
 
   .unread-message {
+    flex: 0 1 20px;
     width: 20px;
     height: 20px;
     border-radius: 100%;
@@ -45,7 +47,7 @@
 }
 
 .dialog-list {
-  flex: 0 0 89%;
+  flex: 0 0 87%;
 
   @include bgc;
 
@@ -56,5 +58,15 @@
     background-color: $base-white;
     border-radius: 10px;
     margin: 5px 0;
+    position: relative;
+
+    .id-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
   }
 }

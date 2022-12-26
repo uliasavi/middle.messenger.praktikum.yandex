@@ -1,7 +1,8 @@
 @import "../../variable";
 @import "../../components/chatsComponents/DialogList/DialogList";
-@import "../../components/chatsComponents/InputFile/InputFile";
 @import "../../components/chatsComponents/Message/Message";
+@import "../../components/chatsComponents/NewChat/NewChat";
+@import "../../components/chatsComponents/ChatsSettings/ChatsSettings";
 
 @mixin bgc {
   background-color: $second-blue;
@@ -35,6 +36,7 @@
 
     .users-block {
       flex: 0 0 10%;
+      margin-bottom: 10px;
 
       @include display-flex;
       @include bgc;
@@ -72,6 +74,7 @@
 
     .companion-info {
       flex: 0 0 5%;
+      justify-content: space-between;
 
       @include bgc;
 
@@ -80,7 +83,7 @@
       padding-right: 20px;
 
       .friend {
-        flex: 0 1 100%;
+        flex: 0 1 50%;
         display: flex;
         align-items: stretch;
 
@@ -99,28 +102,14 @@
           color: $base-white;
         }
       }
-
-      .chat-settings {
-        width: 35px;
-        height: 35px;
-        border-radius: 100%;
-        background-image: url("./assets/settings.svg");
-        background-position: center;
-        background-size: cover;
-
-        &:hover,
-        &:focus {
-          filter: contrast(200%);
-        }
-      }
     }
 
     .messages-wrapper {
       flex: 0 0 85%;
+      overflow-y: auto;
+      overflow-x: hidden;
       display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: flex-end;
+      flex-direction: column-reverse;
     }
 
     .typing-place {

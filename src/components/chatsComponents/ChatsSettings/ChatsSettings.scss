@@ -1,0 +1,25 @@
+@import "../../../variable";
+
+.chat-settings {
+  display: flex;
+  align-items: center;
+  font-family: "JetBrains Mono", sans-serif;
+  gap: 20px;
+
+  li {
+    list-style-type: none;
+    
+    button {
+      background-color: $base-white;
+      color: $base-color;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 15px;
+      border-radius: 10px;
+      font-family: initial;
+      font-size: 18px;
+    }
+  }
+}

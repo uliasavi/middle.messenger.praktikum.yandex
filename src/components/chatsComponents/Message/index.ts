@@ -1,11 +1,19 @@
 import Block from "../../../utils/Block";
 import template from "./Message.hbs";
 interface MessageProps {
-  text: string;
+  chat_id: number;
+  content: string;
+  file: null;
+  id: number;
+  is_read: boolean;
+  time: string;
+  type: string;
+  user_id: number;
+  isMy?: boolean | undefined;
 }
 export class Message extends Block<MessageProps> {
   constructor(props: MessageProps) {
-    super({ ...props });
+    super(props);
   }
 
   render() {
