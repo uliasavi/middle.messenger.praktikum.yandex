@@ -21,7 +21,7 @@ class ChangeUserDataFormBase extends Block<ChangePasswordProps> {
     super(props);
   }
   protected init() {
-    this.children.inputAvatar = new InputFile({});
+    this.children.inputAvatar = new InputFile();
     this.children.login = new Label({
       label: "Логин",
       type: "text",

@@ -22,7 +22,7 @@ class ChatsController {
     try {
       const chats = await this.api.getAllChats();
       store.set("chats", chats);
-      chats.map(async (chat:DialogMiniInterface) => {
+      (chats as []).map(async (chat:DialogMiniInterface) => {
           await messagesController.connect(chat.id);
       });
     } catch (e) {

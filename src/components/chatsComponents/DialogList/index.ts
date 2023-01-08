@@ -75,21 +75,22 @@ class DialogListBase extends Block<DialogListProps> {
     store.set("activeChatID", +currentDialogID);
   }
   addChats() {
-    this.children.modal.setProps({ class: "" });
+    (this.children.modal as Block).setProps({ class: "" });
   }
   AddModal(e: Event) {
     e.preventDefault();
-    const formData: any = Object.fromEntries(new FormData(e.target).entries());
+    const target = e.target as HTMLFormElement;
+    const formData: any = Object.fromEntries(new FormData(target).entries());
     if (formData.title) {
       ChatsController.create(formData.title);
     }
-    this.children.modal.setProps({ class: "hide" });
+    (this.children.modal as Block).setProps({ class: "hide" });
   }
   protected componentDidUpdate(
     oldProps: DialogListProps,
     newProps: DialogListProps
   ): boolean {
-    this.children.modal.setProps({
+    (this.children.modal as Block).setProps({
       openModal: newProps.openModal,
     });
     this.children.chats = this.createChats(newProps);

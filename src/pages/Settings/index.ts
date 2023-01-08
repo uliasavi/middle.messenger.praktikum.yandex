@@ -7,22 +7,24 @@ import UserController from "../../controllers/UserController";
 import AuthController from "../../controllers/AuthController";
 import store, { withStore } from "../../utils/Store";
 import { merge } from "../../utils/helpers";
-import ResourcesController from "../../controllers/ResourcesController"
+
 interface SettingsPageProps {
-  display_name: string;
-  avatar: any;
-  disabled: boolean;
-  hidePasswordChange: boolean;
-  hideDataChange: boolean;
-  hideLink: boolean;
-  hideAcceptDataBtn: boolean;
+  display_name?: string;
+  avatar?: string;
+  disabled?: boolean;
+  hidePasswordChange?: boolean;
+  hideDataChange?: boolean;
+  hideLink?: boolean;
+  hideAcceptDataBtn?: boolean;
 }
 
 class SettingsPageBase extends Block<SettingsPageProps> {
   constructor(props: SettingsPageProps) {
     super({
       ...props,
-      avatar: `https://ya-praktikum.tech/api/v2/resources/${store.getState().user.avatar}`,
+      avatar: `https://ya-praktikum.tech/api/v2/resources/${
+        store.getState().user.avatar
+      }`,
       disabled: true,
       hidePasswordChange: false,
       hideDataChange: true,
@@ -39,7 +41,7 @@ class SettingsPageBase extends Block<SettingsPageProps> {
     this.children.changeUserDataForm = new ChangeUserDataForm({
       disabled: this.props.disabled,
       events: {
-        submit: (e: Event) => this.changeUserData(e),
+        submit: (e: { target: HTMLFormElement; preventDefault: any }) => this.changeUserData(e),
       },
     });
     this.children.linkChangeData = new Button({
@@ -75,18 +77,19 @@ class SettingsPageBase extends Block<SettingsPageProps> {
   }
   changePassword(e: Event): void {
     e.preventDefault();
-    const formData: any = Object.fromEntries(new FormData(e.target).entries());
+    const target = e.target as HTMLFormElement;
+    const formData: any = Object.fromEntries(new FormData(target).entries());
     UserController.changePassword(formData);
     this.showMainSettings();
   }
   changeAvatar() {
-    const input = document.getElementById("avatar");
-    const avatar = input?.files[0];
+    const input = document.getElementById("avatar") as HTMLInputElement;
+    const avatar: File = (input.files as FileList)[0];
     const formData = new FormData();
     formData.append("avatar", avatar);
     UserController.changeAvatar(formData);
   }
-  changeUserData(e: Event): void {
+  changeUserData(e: { target: HTMLFormElement; preventDefault: any }): void {
     e.preventDefault();
     const formData: any = Object.fromEntries(new FormData(e.target).entries());
     this.changeAvatar();
@@ -107,7 +110,7 @@ class SettingsPageBase extends Block<SettingsPageProps> {
     this.setProps({ hideLink: true });
   }
   protected componentDidUpdate(oldProps: any, newProps: any): boolean {
-    this.children.changeUserDataForm.setProps({
+    (this.children.changeUserDataForm as Block).setProps({
       disabled: newProps.disabled,
     });
     return true;

@@ -26,11 +26,14 @@ export class LoginPage extends Block {
       class: "nav-link",
     });
   }
-  onSubmit(e: Event): void {
+  onSubmit(e: {
+    preventDefault: () => void;
+    target: HTMLFormElement | undefined;
+  }): void {
     e.preventDefault();
-    const formData: any = Object.fromEntries(new FormData(e.target).entries());
+    const target = e.target as HTMLFormElement;
+    const formData: any = Object.fromEntries(new FormData(target).entries());
     AuthController.signin(formData);
-    Router.go("/messenger");
   }
   render() {
     return this.compile(template, { ...this.props });

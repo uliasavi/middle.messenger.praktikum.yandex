@@ -20,7 +20,7 @@ export class Store extends EventBus {
 const store = new Store();
 
 export function withStore(mapStateToProps: (state: any) => any) {
-  return function wrap(Component: typeof Block) {
+  return function wrap(Component: typeof Block<Record<string, any>>) {
     let previousState: any;
 
     return class WithStore extends Component {

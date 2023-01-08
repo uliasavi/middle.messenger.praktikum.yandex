@@ -4,7 +4,10 @@ import { Label } from "../../general/Label";
 
 interface ChangePasswordProps {
   events: {
-    submit: (e: Event) => void;
+    submit: (e: {
+      preventDefault: () => void;
+      target: HTMLFormElement | undefined;
+    }) => void;
   };
 }
 

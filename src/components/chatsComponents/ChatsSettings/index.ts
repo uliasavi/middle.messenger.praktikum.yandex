@@ -25,10 +25,10 @@ export class ChatSettings extends Block<ChatSettingsProps> {
     });
   }
   protected init(): void {
-    this.children.addFriend = new AddFriend({
+    this.children.addFriends = new AddFriend({
       title: "Добавить собеседника",
       events: {
-        click: () => this.addFriend(),
+        click: () => this.addFriendAction(),
       },
     });
     this.children.addModal = new AddModal({
@@ -42,7 +42,7 @@ export class ChatSettings extends Block<ChatSettingsProps> {
   }
   addModal(e: Event) {
     e.preventDefault();
-    const formData: any = Object.fromEntries(new FormData(e.target).entries());
+    const formData: any = Object.fromEntries(new FormData(e.target as HTMLFormElement ).entries());
     const data: addUsersData = {
       users: [formData.title],
       chatId: this.props.chatId,
@@ -50,16 +50,16 @@ export class ChatSettings extends Block<ChatSettingsProps> {
     if (data.users && data.chatId) {
       ChatsController.addUserToChat(data);
     }
-    this.children.addModal.setProps({ class: "hide" });
+    (this.children.addModal as Block).setProps({ class: "hide" });
     this.setProps({ showAddBtn: true });
   }
-  addFriend() {
+  addFriendAction() {
     this.setProps({ showAddBtn: false });
-    this.children.addModal.setProps({ class: "" });
+    (this.children.addModal as Block).setProps({ class: "" });
   }
 
   protected componentDidUpdate(oldProps: any, newProps: any): boolean {
-    this.children.addModal.setProps({
+    (this.children.addModal as Block).setProps({
       openModal: newProps.openModal,
     });
     return true;

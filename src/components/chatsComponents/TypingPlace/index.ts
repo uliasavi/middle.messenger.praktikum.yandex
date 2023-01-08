@@ -3,7 +3,7 @@ import template from "./TypingPlace.hbs";
 
 interface TypingPlaceProps {
   events: {
-    submit: (e: Event) => void;
+    submit: (e:  { preventDefault: () => void; target: HTMLFormElement; }) => void;
   };
 }
 export class TypingPlace extends Block<TypingPlaceProps> {

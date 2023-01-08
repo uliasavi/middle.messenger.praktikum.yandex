@@ -23,7 +23,8 @@ export class RegistrationPage extends Block {
   }
   onSubmit(e: Event): void {
     e.preventDefault();
-    const formData: any  = Object.fromEntries(new FormData(e.target).entries());
+    const target = e.target as HTMLFormElement;
+    const formData: any  = Object.fromEntries(new FormData(target).entries());
     delete formData.password_repeat;
     AuthController.signup(formData);
   }

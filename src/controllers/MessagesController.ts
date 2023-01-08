@@ -77,7 +77,7 @@ class MessagesController {
     });
   }
 
-  sendMessage(chatId: number, content: string) {
+  sendMessage(chatId: number, content: any) {
     const transport = this.transports.get(chatId);
     if (!transport) {
       throw new Error("Connection isn't available");

@@ -1,4 +1,4 @@
-const validationObserver = {
+const validationObserver: Record<string, any>= {
   login: true,
   password: true,
   email: true,
@@ -11,7 +11,7 @@ const validationObserver = {
   newPassword: true,
 };
 function isDisabledSubmit() {
-  const submitBtn = document.getElementById("submit-btn") as Element;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
   for (const key in validationObserver) {
     if (Object.prototype.hasOwnProperty.call(validationObserver, key)) {
       const element: boolean = validationObserver[key];
@@ -173,7 +173,7 @@ export function phoneValidation(
   }
 ) {
   const regularExp =
-    /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+    /^(\+7|7|8)?[\s-]?\(?[489][0-9]{2}\)?[\s-]?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}$/;
   const isCorrectPhone = regularExp.test(value);
   if (!isCorrectPhone) {
     validationObserver.phone = false;
@@ -298,7 +298,7 @@ export function repeatPasswordValidation(
   }
 ) {
   const firstInputPassword = document.getElementById("password") as Element;
-  const firstPassword: string = firstInputPassword.value;
+  const firstPassword: string = (firstInputPassword as HTMLInputElement).value;
   if (!value) {
     validationObserver.repeatPassword = false;
     isDisabledSubmit();

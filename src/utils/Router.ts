@@ -1,4 +1,5 @@
 import Block from "./Block";
+import { withStore } from "./Store";
 
 function isEqual(lhs: string, rhs: string): boolean {
   return lhs === rhs;
@@ -61,7 +62,7 @@ class Router {
     Router.__instance = this;
   }
 
-  public use(pathname: string, block: typeof Block) {
+  public use(pathname: string, block: any) {
     const route = new Route(pathname, block, this.rootQuery);
     this.routes.push(route);
 

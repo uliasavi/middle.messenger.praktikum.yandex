@@ -1,7 +1,6 @@
 import UserAPI from "../api/UserAPI";
 import store from "../utils/Store";
 import { PasswordData, UserData } from "../interfaces/user";
-import ResourcesController from "./ResourcesController";
 
 class UserController {
   private api = new UserAPI();

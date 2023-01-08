@@ -1,5 +1,5 @@
 import Block from "../../../../utils/Block";
-import template from "./AddFriend.hbs";
+import template from "./AddFriends.hbs";
 
 interface AddFriendProps {
   title: string;

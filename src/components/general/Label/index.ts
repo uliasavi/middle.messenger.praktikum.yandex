@@ -24,7 +24,11 @@ interface LabelProps {
   disabled?: string;
 }
 interface Context {
-  children: { validation: { setProps: (arg0: { isUnvalid: boolean; message: string }) => void } }
+  children: {
+    validation: {
+      setProps: (arg0: { isUnvalid: boolean; message: string }) => void;
+    };
+  };
 }
 export class Label extends Block<LabelProps> {
   constructor(props: LabelProps) {
@@ -51,7 +55,7 @@ export class Label extends Block<LabelProps> {
     console.log("focus");
   }
   onblur(e: { target: { value: string } }) {
-    const typeOfInput = this.children.input.props.name;
+    const typeOfInput = (this.children.input as Block).props.name;
     switch (typeOfInput) {
       case "login":
         loginValidation(e.target.value, this as unknown as Context);
@@ -86,8 +90,8 @@ export class Label extends Block<LabelProps> {
     }
   }
   protected componentDidUpdate(oldProps: any, newProps: any): boolean {
-    this.children.input.setProps({ disabled: newProps.disabled });
-    this.children.input.setProps({ isError: newProps.isError });
+    (this.children.input as Block).setProps({ disabled: newProps.disabled });
+    (this.children.input as Block).setProps({ isError: newProps.isError });
     return false;
   }
   render() {

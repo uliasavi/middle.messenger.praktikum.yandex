@@ -43,7 +43,7 @@ interface ChatsPageProps {
   avatar: string;
   chats: DialogMiniInterface[];
   activeChatID: number;
-  messages: MessageProps[];
+  messages: Record<string, MessageProps[]>;
   user: User;
 }
 
@@ -72,7 +72,7 @@ class ChatsPageBase extends Block<ChatsPageProps> {
     });
     this.children.typingPlace = new TypingPlace({
       events: {
-        submit: (e: Event): void => {
+        submit: (e: { preventDefault: () => void; target: HTMLFormElement; }): void => {
           return this.sendMessage(e);
         },
       },
@@ -82,7 +82,7 @@ class ChatsPageBase extends Block<ChatsPageProps> {
     });
     this.children.messages = new Messages({
       selectedChat: this.props.activeChatID,
-      messages: this.serActiveChatMessages(
+      messages: this.setActiveChatMessages(
         this.props.messages,
         this.props.activeChatID
       ),
@@ -90,7 +90,7 @@ class ChatsPageBase extends Block<ChatsPageProps> {
     });
     ChatsController.getAllChats();
   }
-  serActiveChatMessages(
+  setActiveChatMessages(
     messages: Record<string, MessageProps[]>,
     activeChatID: number | undefined
   ): MessageProps[] | undefined {
@@ -104,13 +104,14 @@ class ChatsPageBase extends Block<ChatsPageProps> {
         activeChatMessages = element;
       }
     }
-    
+
     return activeChatMessages;
   }
-  sendMessage(e: Event): void {
+  sendMessage(e: { preventDefault: () => void; target: HTMLFormElement; }): void {
     e.preventDefault();
-    const formData = Object.fromEntries(new FormData(e.target).entries());
-    if (formData.message || formData.file.size != 0) {
+    const target = e. target as HTMLFormElement;
+    const formData = Object.fromEntries(new FormData(target).entries());
+    if (formData.message) {
       const chatId = this.props.activeChatID;
       messagesController.sendMessage(chatId, formData.message);
       e.target.reset();
@@ -133,16 +134,16 @@ class ChatsPageBase extends Block<ChatsPageProps> {
     return currentChat[0] || {};
   }
   protected componentDidUpdate(oldProps: any, newProps: any): boolean {
-    this.children.settings.setProps({
+    (this.children.settings as Block).setProps({
       chatId: this.setActiveChat(newProps.chats)?.id,
     });
-    this.children.dialogHeader.setProps({
+    (this.children.dialogHeader as Block).setProps({
       display_name: this.setActiveChat(newProps.chats)?.title,
     });
-    this.children.dialogList.setProps({ chats: newProps.chats });
-    this.children.messages.setProps({
+    (this.children.dialogList as Block).setProps({ chats: newProps.chats });
+    (this.children.messages as Block).setProps({
       selectedChat: newProps.activeChatID,
-      messages: this.serActiveChatMessages(
+      messages: this.setActiveChatMessages(
         newProps.messages,
         newProps.activeChatID
       ),
