@@ -1,4 +1,4 @@
-const validationObserver: Record<string, any>= {
+export const validationObserver: Record<string, any> = {
   login: true,
   password: true,
   email: true,
@@ -15,9 +15,13 @@ function isDisabledSubmit() {
   for (const key in validationObserver) {
     if (Object.prototype.hasOwnProperty.call(validationObserver, key)) {
       const element: boolean = validationObserver[key];
-      submitBtn.disabled = false;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+      }
       if (!element) {
-        submitBtn.disabled = true;
+        if (submitBtn) {
+          submitBtn.disabled = true;
+        }
         break;
       }
     }
@@ -59,8 +63,7 @@ export function loginValidation(
     isDisabledSubmit();
     context.children.validation.setProps({
       isUnvalid: true,
-      message:
-        "Логин должен содержать только буквы, цифры и спец сиволы недопустимы",
+      message: "Логин должен содержать только буквы, цифры и спец сиволы недопустимы",
     });
   } else {
     validationObserver.login = true;
@@ -172,8 +175,7 @@ export function phoneValidation(
     };
   }
 ) {
-  const regularExp =
-    /^(\+7|7|8)?[\s-]?\(?[489][0-9]{2}\)?[\s-]?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}$/;
+  const regularExp = /^(\+7|7|8)?[\s-]?\(?[489][0-9]{2}\)?[\s-]?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}$/;
   const isCorrectPhone = regularExp.test(value);
   if (!isCorrectPhone) {
     validationObserver.phone = false;
@@ -212,8 +214,7 @@ export function nameValidation(
     isDisabledSubmit();
     context.children.validation.setProps({
       isUnvalid: true,
-      message:
-        "Имя должно содержать только буквы, цифры и спец сиволы недопустимы",
+      message: "Имя должно содержать только буквы, цифры и спец сиволы недопустимы",
     });
   } else {
     validationObserver.name = true;
@@ -245,8 +246,7 @@ export function displayNameValidation(
     isDisabledSubmit();
     context.children.validation.setProps({
       isUnvalid: true,
-      message:
-        "Имя должно содержать только буквы, цифры и спец сиволы недопустимы",
+      message: "Имя должно содержать только буквы, цифры и спец сиволы недопустимы",
     });
   } else {
     validationObserver.displayName = true;
@@ -278,8 +278,7 @@ export function secondnameValidation(
     isDisabledSubmit();
     context.children.validation.setProps({
       isUnvalid: true,
-      message:
-        "Фамилия должна содержать только буквы, цифры и спец сиволы недопустимы",
+      message: "Фамилия должна содержать только буквы, цифры и спец сиволы недопустимы",
     });
   } else {
     validationObserver.secondname = true;

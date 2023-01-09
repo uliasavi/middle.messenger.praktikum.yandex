@@ -1,5 +1,4 @@
 import BaseAPI from "./BaseAPI";
-import { UserData } from "../interfaces/auth";
 
 interface addUsersData {
   users: number[];

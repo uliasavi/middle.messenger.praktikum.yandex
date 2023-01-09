@@ -1,5 +1,4 @@
 import Block from "./Block";
-import { withStore } from "./Store";
 
 function isEqual(lhs: string, rhs: string): boolean {
   return lhs === rhs;
@@ -22,11 +21,7 @@ function render(query: string, block: Block) {
 class Route {
   private block: Block | null = null;
 
-  constructor(
-    private pathname: string,
-    private readonly blockClass: typeof Block,
-    private readonly query: string
-  ) {}
+  constructor(private pathname: string, private readonly blockClass: typeof Block, private readonly query: string) {}
 
   leave() {
     this.block = null;
@@ -77,6 +72,11 @@ class Router {
     };
 
     this._onRoute(window.location.pathname);
+  }
+
+  public reset() {
+    this.routes = [];
+    this.currentRoute = null;
   }
 
   private _onRoute(pathname: string) {

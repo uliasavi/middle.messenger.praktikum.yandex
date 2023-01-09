@@ -2,7 +2,6 @@ import Block from "../../utils/Block";
 import template from "./LoginPage.hbs";
 import { Link } from "../../components/general/Link";
 import { LoginForm } from "../../components/Login/LoginForm";
-import Router from "../../utils/Router";
 import AuthController from "../../controllers/AuthController";
 
 export class LoginPage extends Block {
