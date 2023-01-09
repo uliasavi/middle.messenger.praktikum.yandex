@@ -9,7 +9,10 @@
     "build": "parcel build ./index.html --dist-dir ./dist --no-cache",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
     "lint": "eslint .",
-    "stylelint": "stylelint \"**/*.scss\""
+    "stylelint": "stylelint \"**/*.scss\"",
+    "validate": "npm-run-all --parallel test lint",
+    "precommit": "npm run validate",
+    "prepush": "npm run validate"
   },
   "repository": {
     "type": "git",
@@ -59,10 +62,5 @@
   "dependencies": {
     "handlebars": "4.7.7",
     "nanoid": "3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm-run-all test lint stylelint"
-    }
   }
 }
