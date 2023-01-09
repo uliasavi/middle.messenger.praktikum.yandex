@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "description": "messenger",
   "scripts": {
-    "start": "parcel build ./index.html && node ./server.js",
-    "build-webpack": "webpack --config webpack.config.js",
-    "watch": "parcel ./index.html",
-    "build": "parcel build ./index.html --dist-dir ./dist --no-cache",
+    "start": "webpack  & node ./server.js",
+    "build": "webpack --config webpack.config.js",
+    "serve": "webpack serve --mode=development --progress",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
     "lint": "eslint --quiet .",
     "stylelint": "stylelint \"**/*.scss\"",
@@ -23,10 +22,6 @@
   },
   "homepage": "https://github.com/uliasavi/Messenger#readme",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "^1.0.2",
-    "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
-    "@parcel/transformer-css": "2.8.0",
-    "@parcel/transformer-sass": "2.7.0",
     "@types/chai": "^4.3.4",
     "@types/jsdom": "^20.0.1",
     "@types/mocha": "^10.0.1",
@@ -44,7 +39,6 @@
     "mini-css-extract-plugin": "^2.7.2",
     "mocha": "^10.2.0",
     "node-sass": "^8.0.0",
-    "parcel": "2.7.0",
     "proxyquire": "^2.1.3",
     "sass-loader": "^13.2.0",
     "scss": "0.2.4",
@@ -55,7 +49,9 @@
     "ts-node": "^10.9.1",
     "typescript": "4.9.3",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1",
+    "html-webpack-plugin": "^5.3.2"
   },
   "dependencies": {
     "handlebars": "4.7.7",

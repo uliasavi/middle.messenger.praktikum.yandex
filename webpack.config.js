@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 // webpack.config.js
 const miniCss = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require("path");
 
 // eslint-disable-next-line no-undef
@@ -9,10 +10,14 @@ module.exports = {
   entry: "./src/index.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "project-name.bundle.js",
+    filename: "messenger.[contenthash:5].js",
   },
   resolve: {
     extensions: [".ts", ".js", ".json"],
+  },
+  devServer: {
+    historyApiFallback: true,
+    port: 3000,
   },
   module: {
     rules: [
@@ -52,6 +57,11 @@ module.exports = {
   plugins: [
     new miniCss({
       filename: "style.css",
+    }),
+
+    new HtmlWebpackPlugin({
+      template: "./index.html",
+      filename: "index.html",
     }),
   ],
 };
