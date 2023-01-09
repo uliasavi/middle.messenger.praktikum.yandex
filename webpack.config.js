@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // webpack.config.js
 const miniCss = require("mini-css-extract-plugin");
 const path = require("path");

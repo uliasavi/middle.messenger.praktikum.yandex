@@ -7,7 +7,9 @@
     "build-webpack": "webpack --config webpack.config.js",
     "watch": "parcel ./index.html",
     "build": "parcel build ./index.html --dist-dir ./dist --no-cache",
-    "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'"
+    "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
+    "lint": "eslint .",
+    "stylelint":"stylelint \"**/*.scss\""
   },
   "repository": {
     "type": "git",
