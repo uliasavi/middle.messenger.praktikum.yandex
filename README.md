@@ -27,3 +27,4 @@
 
 - «[Ссылка на макет в фигме](https://www.figma.com/file/6ZMe50lFmKfFw7q0bdzsnU/Untitled?node-id=0%3A1)»
 - «[Ссылка на netlify](https://deploy-preview-4--candid-heliotrope-0054bc.netlify.app/messenger)»
+- «[Ссылка на деплой render.com](https://messenger-app.onrender.com)»
